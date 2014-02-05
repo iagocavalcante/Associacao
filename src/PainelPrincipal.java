@@ -73,6 +73,7 @@ public class PainelPrincipal extends javax.swing.JFrame {
                 txSemestre.setText("");
                 txSerie.setText("");
                 lbFoto.setIcon(null);
+                txCPF.setText("");
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -98,6 +99,7 @@ public class PainelPrincipal extends javax.swing.JFrame {
         aluno.setSexo(cbSexo.getSelectedItem().toString());
         aluno.setTelMae(Integer.parseInt(txContatoMae.getText()));
         aluno.setTelPai(Integer.parseInt(txContatoPai.getText()));
+        aluno.setCpf(Integer.parseInt(txCPF.getText()));
         aluno.setnCasa(txNumeroCasa.getText());
         aluno.setSerie(txSerie.getText());
         aluno.setFoto(arquivo.getAbsolutePath().replace("\\", "/").toString());
@@ -125,7 +127,8 @@ public class PainelPrincipal extends javax.swing.JFrame {
                         + "rendimento_escolar = '" + aluno.getRendimentoEscolar() + "',"
                         + "semestre = '" + aluno.getSemestre() + "',"
                         + "foto = '" + aluno.getFoto() + "',"
-                        + "rg = '" + aluno.getRg() + "' WHERE idAluno = '" + aluno.getConsulta() + "' OR idAluno = '" + aluno.getConsulta() + "'";
+                        + "rg = '" + aluno.getRg() + 
+                        "' cpf = '"+aluno.getCpf()+"' WHERE idAluno = '" + aluno.getConsulta() + "' OR idAluno = '" + aluno.getConsulta() + "'";
                 stm.executeUpdate(sql);
                 JOptionPane.showMessageDialog(this, "Dados Atualizados com sucesso");
 
@@ -149,6 +152,7 @@ public class PainelPrincipal extends javax.swing.JFrame {
                 txSerie.setText("");
                 lbFoto.setIcon(null);
                 txConsultar.setText("");
+                txCPF.setText("");
 
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -188,6 +192,7 @@ public class PainelPrincipal extends javax.swing.JFrame {
                     txSemestre.setText(rs.getString("semestre"));
                     txRg.setText(rs.getString("rg"));
                     txSerie.setText(rs.getString("serie"));
+                    txCPF.setText(rs.getString("cpf"));
                     lbFoto.setIcon(new ImageIcon(rs.getString("foto")));
                     Abrir.setVisible(false);
 
@@ -209,6 +214,7 @@ public class PainelPrincipal extends javax.swing.JFrame {
                     txSemestre.setEditable(false);
                     txRg.setEditable(false);
                     txSerie.setEditable(false);
+                    txCPF.setEditable(false);
 
                     btFoto.setVisible(false);
                     btLimpar.setVisible(false);
@@ -255,6 +261,7 @@ public class PainelPrincipal extends javax.swing.JFrame {
         aluno.setTelPai(Integer.parseInt(txContatoPai.getText()));
         aluno.setnCasa(txNumeroCasa.getText());
         aluno.setSerie(txSerie.getText());
+        aluno.setCpf(Integer.parseInt(txCPF.getText()));
         aluno.setFoto(arquivo.getAbsolutePath().replace("\\", "/").toString());
 
         if (con == null) {
@@ -287,7 +294,8 @@ public class PainelPrincipal extends javax.swing.JFrame {
                         + "'" + aluno.getSemestre() + "',"
                         + "null, null,"
                         + "'" + aluno.getFoto() + "',"
-                        + "'" + aluno.getRg() + "')";
+                        + "'" + aluno.getRg() + ""
+                        + "', '"+aluno.getCpf()+"')";
                 stm.executeUpdate(sql);
                 JOptionPane.showMessageDialog(this, "Dados cadastrados com sucesso!");
 
@@ -310,6 +318,7 @@ public class PainelPrincipal extends javax.swing.JFrame {
                 txRg.setText("");
                 txSemestre.setText("");
                 txSerie.setText("");
+                txCPF.setText("");
                 lbFoto.setIcon(null);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -991,6 +1000,7 @@ public class PainelPrincipal extends javax.swing.JFrame {
         txSemestre.setText("");
         txSerie.setText("");
         lbFoto.setIcon(null);
+        txCPF.setText("");
     }//GEN-LAST:event_btLimparActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
@@ -1064,6 +1074,7 @@ public class PainelPrincipal extends javax.swing.JFrame {
         txRg.setEditable(true);
         txSerie.setEditable(true);
         btFoto.setVisible(true);
+        txCPF.setEditable(true);
     }//GEN-LAST:event_btEditarActionPerformed
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
@@ -1095,6 +1106,7 @@ public class PainelPrincipal extends javax.swing.JFrame {
         txRg.setText("");
         txSemestre.setText("");
         txSerie.setText("");
+        txCPF.setText("");
         lbFoto.setIcon(null);
     }//GEN-LAST:event_btVoltarActionPerformed
 
