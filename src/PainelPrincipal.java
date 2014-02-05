@@ -30,15 +30,15 @@ public class PainelPrincipal extends javax.swing.JFrame {
 
     JLabel logo = new JLabel();
     Aluno aluno = new Aluno();
-    Connection con;
-    Statement stm;
     JFileChooser escolherFoto;
     String caminho;
     File arquivo;
     JFrame abrirFrame;
     JPanel abrirPanel;
     ResultSet rs;
-
+    Connection con;
+    Statement stm;
+    
     public void Deletar() {
         con = null;
         if (con == null) {
@@ -397,6 +397,9 @@ public class PainelPrincipal extends javax.swing.JFrame {
         btEditar = new javax.swing.JButton();
         btSalvar = new javax.swing.JButton();
         btVoltar = new javax.swing.JButton();
+        lbCPF = new javax.swing.JLabel();
+        txCPF = new javax.swing.JFormattedTextField();
+        jLabel8 = new javax.swing.JLabel();
         menu = new javax.swing.JMenuBar();
         mArquivo = new javax.swing.JMenu();
         mAbrirFicha = new javax.swing.JMenuItem();
@@ -405,8 +408,6 @@ public class PainelPrincipal extends javax.swing.JFrame {
         mConsulta = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
-
-        Abrir.setPreferredSize(new java.awt.Dimension(300, 200));
 
         lbConsultar.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
         lbConsultar.setText("Consultar Ficha por ID ou RG do Aluno");
@@ -632,6 +633,17 @@ public class PainelPrincipal extends javax.swing.JFrame {
             }
         });
 
+        lbCPF.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        lbCPF.setText("CPF :");
+
+        try {
+            txCPF.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###########")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        jLabel8.setText("*");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -656,25 +668,29 @@ public class PainelPrincipal extends javax.swing.JFrame {
                                     .addComponent(cbSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(35, 35, 35)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lbRg)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(lbInicio, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txInicio, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                        .addComponent(txRg, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel5)))
-                                .addGap(31, 31, 31)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lbFIm)
-                                    .addComponent(txFim, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(lbIdade)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(txIdade, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel1)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel1))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lbInicio)
+                                    .addComponent(txInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(txRg, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel5))
+                                    .addComponent(lbRg))
+                                .addGap(31, 31, 31)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(lbCPF)
+                                    .addComponent(lbFIm)
+                                    .addComponent(txFim, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
+                                    .addComponent(txCPF))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel8)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 270, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btFoto, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
                             .addComponent(lbfoto1)
@@ -777,13 +793,17 @@ public class PainelPrincipal extends javax.swing.JFrame {
                             .addComponent(txNomeAluno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lbRg)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(lbRg)
+                                .addComponent(lbCPF))
                             .addComponent(lbNomeAluno))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txNomeProjeto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txRg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5))
+                            .addComponent(jLabel5)
+                            .addComponent(txCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel8))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lbDtNascimento)
@@ -1147,12 +1167,14 @@ public class PainelPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lbBairro;
+    private javax.swing.JLabel lbCPF;
     private javax.swing.JLabel lbConsultar;
     private javax.swing.JLabel lbContatoMae;
     private javax.swing.JLabel lbContatoPai;
@@ -1182,6 +1204,7 @@ public class PainelPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuBar menu;
     private javax.swing.JPanel panelPrincipal;
     private javax.swing.JTextField txBairro;
+    private javax.swing.JFormattedTextField txCPF;
     private javax.swing.JTextField txConsultar;
     private javax.swing.JFormattedTextField txContatoMae;
     private javax.swing.JFormattedTextField txContatoPai;
