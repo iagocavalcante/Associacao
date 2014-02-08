@@ -1,8 +1,16 @@
 
 public class Aluno {
 
-    private String nCasa,rendimentoEscolar, htProjeto, dtInicio, dtFim, bairro, dtNascimento, nomeProjeto, nomeAluno, sexo, nomePai, nomeMae, serie, endereco, nomeEscola, semestre, foto;
-    private int consulta;
+    private String nCasa,rendimentoEscolar, htProjeto, cpf, dtInicio, dtFim, bairro, dtNascimento, nomeProjeto, nomeAluno, sexo, nomePai, nomeMae, serie, endereco, nomeEscola, semestre, foto;
+    private int consulta,idade, rg, telPai, telMae;
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
 
     public int getConsulta() {
         return consulta;
@@ -20,7 +28,6 @@ public class Aluno {
     public void setFoto(String foto) {
         this.foto = foto;
     }
-    private int idade, rg, telPai, telMae;
 
     public String getSerie() {
         return serie;

@@ -1,13 +1,19 @@
 
 import java.awt.Color;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
@@ -38,304 +44,18 @@ public class PainelPrincipal extends javax.swing.JFrame {
     ResultSet rs;
     Connection con;
     Statement stm;
-    
-    public void Deletar() {
-        con = null;
-        if (con == null) {
-            try {
-                con = ConexaoDB.getConexao();
-                stm = con.createStatement();
-                String sql;
-                sql = "DELETE FROM inscricao WHERE idAluno = '" + aluno.getConsulta() + "' OR rg = '" + aluno.getConsulta() + "';";
-                stm.execute(sql);
-                JOptionPane.showMessageDialog(this, "Dados deletados com sucesso!");
-                Abrir.setVisible(false);
-                txConsultar.setText("");
-                lbConsultar.setText("Consultar ficha por ID ou Rg :");
-                bConsultar.setText("Consultar");
-
-                txBairro.setText("");
-                txContatoMae.setText("");
-                txContatoPai.setText("");
-                txDtNascimento.setText("");
-                txEndereco.setText("");
-                txFim.setText("");
-                txIdade.setText("");
-                txInicio.setText("");
-                txNomeAluno.setText("");
-                txNomeEscola.setText("");
-                txNomeMae.setText("");
-                txNomePai.setText("");
-                txNomeProjeto.setText("");
-                txNumeroCasa.setText("");
-                txRendimentoEscolar.setText("");
-                txRg.setText("");
-                txSemestre.setText("");
-                txSerie.setText("");
-                lbFoto.setIcon(null);
-                txCPF.setText("");
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-    public void Atualizar() {
-        con = null;
-        aluno.setNomeAluno(txNomeAluno.getText());
-        aluno.setNomeEscola(txNomeEscola.getText());
-        aluno.setNomeMae(txNomeMae.getText());
-        aluno.setNomePai(txNomePai.getText());
-        aluno.setNomeProjeto(txNomeProjeto.getText());
-        aluno.setBairro(txBairro.getText());
-        aluno.setDtFim(txFim.getText());
-        aluno.setDtInicio(txInicio.getText());
-        aluno.setDtNascimento(txDtNascimento.getText());
-        aluno.setEndereco(txEndereco.getText());
-        aluno.setIdade(Integer.parseInt(txIdade.getText()));
-        aluno.setRendimentoEscolar(txRendimentoEscolar.getText());
-        aluno.setRg(Integer.parseInt(txRg.getText()));
-        aluno.setSemestre(txSemestre.getText());
-        aluno.setSexo(cbSexo.getSelectedItem().toString());
-        aluno.setTelMae(Integer.parseInt(txContatoMae.getText()));
-        aluno.setTelPai(Integer.parseInt(txContatoPai.getText()));
-        aluno.setCpf(Integer.parseInt(txCPF.getText()));
-        aluno.setnCasa(txNumeroCasa.getText());
-        aluno.setSerie(txSerie.getText());
-        aluno.setFoto(arquivo.getAbsolutePath().replace("\\", "/").toString());
-        if (con == null) {
-            try {
-                con = ConexaoDB.getConexao();
-                stm = con.createStatement();
-                String sql;
-                sql = "UPDATE inscricao SET nome_projeto = '" + aluno.getNomeProjeto() + "',"
-                        + "dt_inicio = '" + aluno.getDtInicio() + "',"
-                        + "dt_fim = '" + aluno.getDtFim() + "',"
-                        + "nome_aluno = '" + aluno.getNomeAluno() + "',"
-                        + "dt_nascimento = '" + aluno.getDtNascimento() + "',"
-                        + "sexo = '" + aluno.getSexo() + "',"
-                        + "idade = '" + aluno.getIdade() + "',"
-                        + "nm_pai = '" + aluno.getNomePai() + "',"
-                        + "nm_mae = '" + aluno.getNomeMae() + "',"
-                        + "contatoMae = '" + aluno.getTelMae() + "',"
-                        + "contatoPai = '" + aluno.getTelPai() + "',"
-                        + "endereco = '" + aluno.getEndereco() + "',"
-                        + "nCasa = '" + aluno.getnCasa() + "',"
-                        + "bairro = '" + aluno.getBairro() + "',"
-                        + "nm_escola = '" + aluno.getNomeEscola() + "',"
-                        + "serie = '" + aluno.getSerie() + "',"
-                        + "rendimento_escolar = '" + aluno.getRendimentoEscolar() + "',"
-                        + "semestre = '" + aluno.getSemestre() + "',"
-                        + "foto = '" + aluno.getFoto() + "',"
-                        + "rg = '" + aluno.getRg() + 
-                        "' cpf = '"+aluno.getCpf()+"' WHERE idAluno = '" + aluno.getConsulta() + "' OR idAluno = '" + aluno.getConsulta() + "'";
-                stm.executeUpdate(sql);
-                JOptionPane.showMessageDialog(this, "Dados Atualizados com sucesso");
-
-                txBairro.setText("");
-                txContatoMae.setText("");
-                txContatoPai.setText("");
-                txDtNascimento.setText("");
-                txEndereco.setText("");
-                txFim.setText("");
-                txIdade.setText("");
-                txInicio.setText("");
-                txNomeAluno.setText("");
-                txNomeEscola.setText("");
-                txNomeMae.setText("");
-                txNomePai.setText("");
-                txNomeProjeto.setText("");
-                txNumeroCasa.setText("");
-                txRendimentoEscolar.setText("");
-                txRg.setText("");
-                txSemestre.setText("");
-                txSerie.setText("");
-                lbFoto.setIcon(null);
-                txConsultar.setText("");
-                txCPF.setText("");
-
-            } catch (SQLException e) {
-                e.printStackTrace();
-
-            }
-        }
-    }
-
-    public void Consultar() {
-        con = null;
-        aluno.setConsulta(Integer.parseInt(txConsultar.getText()));
-        if (con == null) {
-            try {
-                con = ConexaoDB.getConexao();
-                stm = con.createStatement();
-                String sql;
-                sql = "SELECT * FROM inscricao WHERE idAluno = " + aluno.getConsulta() + " OR rg = " + aluno.getConsulta() + ";";
-                rs = stm.executeQuery(sql);
-                rs.next();
-                if (rs.isFirst()) {
-                    txNomeProjeto.setText(rs.getString("nome_projeto"));
-                    txInicio.setText(rs.getString("dt_inicio"));
-                    txFim.setText(rs.getString("dt_fim"));
-                    txNomeAluno.setText(rs.getString("nome_aluno"));
-                    txDtNascimento.setText(rs.getString("dt_nascimento"));
-                    cbSexo.setSelectedItem(rs.getString("sexo"));
-                    txIdade.setText(rs.getString("idade"));
-                    txNomePai.setText(rs.getString("nm_pai"));
-                    txNomeMae.setText(rs.getString("nm_mae"));
-                    txContatoMae.setText(rs.getString("contatoMae"));
-                    txContatoPai.setText(rs.getString("contatoPai"));
-                    txEndereco.setText(rs.getString("endereco"));
-                    txNumeroCasa.setText(rs.getString("nCasa"));
-                    txBairro.setText(rs.getString("bairro"));
-                    txNomeEscola.setText(rs.getString("nm_escola"));
-                    txRendimentoEscolar.setText(rs.getString("rendimento_escolar"));
-                    txSemestre.setText(rs.getString("semestre"));
-                    txRg.setText(rs.getString("rg"));
-                    txSerie.setText(rs.getString("serie"));
-                    txCPF.setText(rs.getString("cpf"));
-                    lbFoto.setIcon(new ImageIcon(rs.getString("foto")));
-                    Abrir.setVisible(false);
-
-                    txNomeProjeto.setEditable(false);
-                    txInicio.setEditable(false);
-                    txFim.setEditable(false);
-                    txNomeAluno.setEditable(false);
-                    txDtNascimento.setEditable(false);
-                    txIdade.setEditable(false);
-                    txNomePai.setEditable(false);
-                    txNomeMae.setEditable(false);
-                    txContatoMae.setEditable(false);
-                    txContatoPai.setEditable(false);
-                    txEndereco.setEditable(false);
-                    txNumeroCasa.setEditable(false);
-                    txBairro.setEditable(false);
-                    txNomeEscola.setEditable(false);
-                    txRendimentoEscolar.setEditable(false);
-                    txSemestre.setEditable(false);
-                    txRg.setEditable(false);
-                    txSerie.setEditable(false);
-                    txCPF.setEditable(false);
-
-                    btFoto.setVisible(false);
-                    btLimpar.setVisible(false);
-                    btCadastrar.setVisible(false);
-                    btEditar.setVisible(true);
-                    btSalvar.setVisible(true);
-                } else {
-                    JOptionPane.showMessageDialog(this, "ID ou Rg não cadastrados no banco!");
-                }
-            } catch (SQLException sqlex) {
-                sqlex.printStackTrace();
-            }
-        }
-    }
-
-    public void Cadastrar() {
-        //VERIFICANDO CAMPOS VÁZIOS 
-        if (txBairro.getText().equals("") || txContatoMae.getText().equals("") || txContatoPai.getText().equals("")
-                || txDtNascimento.getText().equals("") || txEndereco.getText().equals("") || txFim.getText().equals("")
-                || txFim.getText().equals("") || txIdade.getText().equals("") || txNomeAluno.getText().equals("")
-                || txNomeEscola.getText().equals("") || txNomeMae.getText().equals("") || txNomePai.getText().equals("")
-                || txNomeProjeto.getText().equals("") || txNumeroCasa.getText().equals("") || txRendimentoEscolar.getText().equals("")
-                || txRg.getText().equals("") || txSemestre.getText().equals("") || txSerie.getText().equals("")) {
-            JOptionPane.showMessageDialog(this, "Existem campos a serem preenchidos ! ");
-        }
-        con = null;
-        //SETANDO OS CAMPOS DA FICHA DE INSCRIÇÃO
-        aluno.setNomeAluno(txNomeAluno.getText());
-        aluno.setNomeEscola(txNomeEscola.getText());
-        aluno.setNomeMae(txNomeMae.getText());
-        aluno.setNomePai(txNomePai.getText());
-        aluno.setNomeProjeto(txNomeProjeto.getText());
-        aluno.setBairro(txBairro.getText());
-        aluno.setDtFim(txFim.getText());
-        aluno.setDtInicio(txInicio.getText());
-        aluno.setDtNascimento(txDtNascimento.getText());
-        aluno.setEndereco(txEndereco.getText());
-        aluno.setIdade(Integer.parseInt(txIdade.getText()));
-        aluno.setRendimentoEscolar(txRendimentoEscolar.getText());
-        aluno.setRg(Integer.parseInt(txRg.getText()));
-        aluno.setSemestre(txSemestre.getText());
-        aluno.setSexo(cbSexo.getSelectedItem().toString());
-        aluno.setTelMae(Integer.parseInt(txContatoMae.getText()));
-        aluno.setTelPai(Integer.parseInt(txContatoPai.getText()));
-        aluno.setnCasa(txNumeroCasa.getText());
-        aluno.setSerie(txSerie.getText());
-        aluno.setCpf(Integer.parseInt(txCPF.getText()));
-        aluno.setFoto(arquivo.getAbsolutePath().replace("\\", "/").toString());
-
-        if (con == null) {
-            try {
-                con = ConexaoDB.getConexao();
-                stm = con.createStatement();
-
-                //INICIALIZANDO OS VALORES PARA ARMAZENAR NO BANCO 
-                String sql;
-                sql = "INSERT INTO inscricao (idAluno, nome_projeto, dt_inicio, dt_fim, nome_aluno, dt_nascimento, sexo, idade, nm_pai, nm_mae,"
-                        + "contatoMae, contatoPai, endereco, nCasa, bairro, nm_escola, serie, rendimento_escolar, semestre, ht_projetos, ht_escolar, foto, rg) "
-                        + "VALUES(null,"
-                        + "'" + aluno.getNomeProjeto() + "',"
-                        + "'" + aluno.getDtInicio() + "',"
-                        + "'" + aluno.getDtFim() + "',"
-                        + "'" + aluno.getNomeAluno() + "',"
-                        + "'" + aluno.getDtNascimento() + "',"
-                        + "'" + aluno.getSexo() + "',"
-                        + "'" + aluno.getIdade() + "',"
-                        + "'" + aluno.getNomePai() + "',"
-                        + "'" + aluno.getNomeMae() + "',"
-                        + "'" + aluno.getTelMae() + "',"
-                        + "'" + aluno.getTelPai() + "',"
-                        + "'" + aluno.getEndereco() + "',"
-                        + "'" + aluno.getnCasa() + "',"
-                        + "'" + aluno.getBairro() + "',"
-                        + "'" + aluno.getNomeEscola() + "',"
-                        + "'" + aluno.getSerie() + "',"
-                        + "'" + aluno.getRendimentoEscolar() + "',"
-                        + "'" + aluno.getSemestre() + "',"
-                        + "null, null,"
-                        + "'" + aluno.getFoto() + "',"
-                        + "'" + aluno.getRg() + ""
-                        + "', '"+aluno.getCpf()+"')";
-                stm.executeUpdate(sql);
-                JOptionPane.showMessageDialog(this, "Dados cadastrados com sucesso!");
-
-                //LIMPAR CAMPOS APÓS CADASTRO
-                txBairro.setText("");
-                txContatoMae.setText("");
-                txContatoPai.setText("");
-                txDtNascimento.setText("");
-                txEndereco.setText("");
-                txFim.setText("");
-                txIdade.setText("");
-                txInicio.setText("");
-                txNomeAluno.setText("");
-                txNomeEscola.setText("");
-                txNomeMae.setText("");
-                txNomePai.setText("");
-                txNomeProjeto.setText("");
-                txNumeroCasa.setText("");
-                txRendimentoEscolar.setText("");
-                txRg.setText("");
-                txSemestre.setText("");
-                txSerie.setText("");
-                txCPF.setText("");
-                lbFoto.setIcon(null);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
-        }
-
-    }
 
     public PainelPrincipal() {
         initComponents();
         this.setResizable(false);
+        ImageIcon imagem = new ImageIcon(getClass().getClassLoader().getResource("img/logo.jpg"));
         logo.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         logo.setBounds(400, 30, 150, 150);
-        logo.setIcon(new ImageIcon("logo.jpg"));
+        logo.setIcon(imagem);
         panelPrincipal.add(logo);
         this.setTitle("Associação FSAT");
+        Image faviIcon = createFaviIcon("biblioteca_icon15x15.png");
+        setIconImage(faviIcon);
         btEditar.setVisible(false);
         btSalvar.setVisible(false);
         btVoltar.setVisible(false);
@@ -348,8 +68,17 @@ public class PainelPrincipal extends javax.swing.JFrame {
         Abrir = new javax.swing.JFrame();
         PanelAbrir = new javax.swing.JPanel();
         lbConsultar = new javax.swing.JLabel();
-        bConsultar = new javax.swing.JButton();
+        btConsultar = new javax.swing.JButton();
         txConsultar = new javax.swing.JTextField();
+        AbrirHistoricoProjeto1 = new javax.swing.JFrame();
+        panelHistoricoProjeto = new javax.swing.JPanel();
+        panelTabela = new javax.swing.JScrollPane();
+        tabela = new javax.swing.JTable();
+        jLabel4 = new javax.swing.JLabel();
+        btProcurar = new javax.swing.JButton();
+        btEditarAluno = new javax.swing.JButton();
+        AbrirHistoricoRendimento1 = new javax.swing.JFrame();
+        panelRendimento = new javax.swing.JPanel();
         panelPrincipal = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
@@ -415,17 +144,17 @@ public class PainelPrincipal extends javax.swing.JFrame {
         mDeletarFicha = new javax.swing.JMenuItem();
         mSair = new javax.swing.JMenuItem();
         mConsulta = new javax.swing.JMenu();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
+        AbrirHistoricoProjeto = new javax.swing.JMenuItem();
+        AbrirHistoricoRendimento = new javax.swing.JMenuItem();
 
         lbConsultar.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
         lbConsultar.setText("Consultar Ficha por ID ou RG do Aluno");
 
-        bConsultar.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 11)); // NOI18N
-        bConsultar.setText("Consultar");
-        bConsultar.addActionListener(new java.awt.event.ActionListener() {
+        btConsultar.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 11)); // NOI18N
+        btConsultar.setText("Consultar");
+        btConsultar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bConsultarActionPerformed(evt);
+                btConsultarActionPerformed(evt);
             }
         });
 
@@ -440,7 +169,7 @@ public class PainelPrincipal extends javax.swing.JFrame {
             .addGroup(PanelAbrirLayout.createSequentialGroup()
                 .addGap(155, 155, 155)
                 .addGroup(PanelAbrirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(bConsultar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btConsultar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txConsultar))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -452,7 +181,7 @@ public class PainelPrincipal extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(txConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(bConsultar)
+                .addComponent(btConsultar)
                 .addContainerGap(23, Short.MAX_VALUE))
         );
 
@@ -471,6 +200,130 @@ public class PainelPrincipal extends javax.swing.JFrame {
                 .addGap(19, 19, 19)
                 .addComponent(PanelAbrir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        AbrirHistoricoProjeto1.setResizable(false);
+
+        javax.swing.GroupLayout panelHistoricoProjetoLayout = new javax.swing.GroupLayout(panelHistoricoProjeto);
+        panelHistoricoProjeto.setLayout(panelHistoricoProjetoLayout);
+        panelHistoricoProjetoLayout.setHorizontalGroup(
+            panelHistoricoProjetoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        panelHistoricoProjetoLayout.setVerticalGroup(
+            panelHistoricoProjetoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+
+        tabela.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null}
+            },
+            new String [] {
+                "Nome do Aluno", "Participação em Projetos"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tabela.setToolTipText("");
+        panelTabela.setViewportView(tabela);
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel4.setText("Histórico de Participação de Projetos");
+
+        btProcurar.setText("Procurar");
+        btProcurar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btProcurarActionPerformed(evt);
+            }
+        });
+
+        btEditarAluno.setText("Editar");
+
+        javax.swing.GroupLayout AbrirHistoricoProjeto1Layout = new javax.swing.GroupLayout(AbrirHistoricoProjeto1.getContentPane());
+        AbrirHistoricoProjeto1.getContentPane().setLayout(AbrirHistoricoProjeto1Layout);
+        AbrirHistoricoProjeto1Layout.setHorizontalGroup(
+            AbrirHistoricoProjeto1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(panelTabela, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
+            .addGroup(AbrirHistoricoProjeto1Layout.createSequentialGroup()
+                .addGroup(AbrirHistoricoProjeto1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(AbrirHistoricoProjeto1Layout.createSequentialGroup()
+                        .addGap(174, 174, 174)
+                        .addComponent(jLabel4))
+                    .addGroup(AbrirHistoricoProjeto1Layout.createSequentialGroup()
+                        .addGap(209, 209, 209)
+                        .addComponent(btProcurar)
+                        .addGap(33, 33, 33)
+                        .addComponent(btEditarAluno)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(AbrirHistoricoProjeto1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(AbrirHistoricoProjeto1Layout.createSequentialGroup()
+                    .addGap(0, 250, Short.MAX_VALUE)
+                    .addComponent(panelHistoricoProjeto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 250, Short.MAX_VALUE)))
+        );
+        AbrirHistoricoProjeto1Layout.setVerticalGroup(
+            AbrirHistoricoProjeto1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AbrirHistoricoProjeto1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(panelTabela, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(AbrirHistoricoProjeto1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btProcurar)
+                    .addComponent(btEditarAluno))
+                .addGap(17, 17, 17))
+            .addGroup(AbrirHistoricoProjeto1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(AbrirHistoricoProjeto1Layout.createSequentialGroup()
+                    .addGap(0, 148, Short.MAX_VALUE)
+                    .addComponent(panelHistoricoProjeto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 147, Short.MAX_VALUE)))
+        );
+
+        javax.swing.GroupLayout panelRendimentoLayout = new javax.swing.GroupLayout(panelRendimento);
+        panelRendimento.setLayout(panelRendimentoLayout);
+        panelRendimentoLayout.setHorizontalGroup(
+            panelRendimentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        panelRendimentoLayout.setVerticalGroup(
+            panelRendimentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout AbrirHistoricoRendimento1Layout = new javax.swing.GroupLayout(AbrirHistoricoRendimento1.getContentPane());
+        AbrirHistoricoRendimento1.getContentPane().setLayout(AbrirHistoricoRendimento1Layout);
+        AbrirHistoricoRendimento1Layout.setHorizontalGroup(
+            AbrirHistoricoRendimento1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(AbrirHistoricoRendimento1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(AbrirHistoricoRendimento1Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(panelRendimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        AbrirHistoricoRendimento1Layout.setVerticalGroup(
+            AbrirHistoricoRendimento1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(AbrirHistoricoRendimento1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(AbrirHistoricoRendimento1Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(panelRendimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -940,16 +793,23 @@ public class PainelPrincipal extends javax.swing.JFrame {
 
         mConsulta.setText("Consulta");
 
-        jMenuItem3.setText("Histórico Participação Projeto");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+        AbrirHistoricoProjeto.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F1, java.awt.event.InputEvent.CTRL_MASK));
+        AbrirHistoricoProjeto.setText("Histórico Participação Projeto");
+        AbrirHistoricoProjeto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
+                AbrirHistoricoProjetoActionPerformed(evt);
             }
         });
-        mConsulta.add(jMenuItem3);
+        mConsulta.add(AbrirHistoricoProjeto);
 
-        jMenuItem4.setText("Histórico Rendimento Escolar");
-        mConsulta.add(jMenuItem4);
+        AbrirHistoricoRendimento.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F2, java.awt.event.InputEvent.CTRL_MASK));
+        AbrirHistoricoRendimento.setText("Histórico Rendimento Escolar");
+        AbrirHistoricoRendimento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AbrirHistoricoRendimentoActionPerformed(evt);
+            }
+        });
+        mConsulta.add(AbrirHistoricoRendimento);
 
         menu.add(mConsulta);
 
@@ -1003,9 +863,12 @@ public class PainelPrincipal extends javax.swing.JFrame {
         txCPF.setText("");
     }//GEN-LAST:event_btLimparActionPerformed
 
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
+    private void AbrirHistoricoProjetoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AbrirHistoricoProjetoActionPerformed
+        AbrirHistoricoProjeto1.setVisible(true);
+        AbrirHistoricoProjeto1.setSize(600, 420);
+        AbrirHistoricoProjeto1.setLocation(450, 200);
+        AbrirHistoricoProjeto1.setResizable(false);
+    }//GEN-LAST:event_AbrirHistoricoProjetoActionPerformed
 
     private void btCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadastrarActionPerformed
         Cadastrar();
@@ -1030,7 +893,13 @@ public class PainelPrincipal extends javax.swing.JFrame {
                         .getName()).log(Level.SEVERE, null, ex);
             }
         }
-        lbFoto.setIcon(new ImageIcon(arquivo.getAbsolutePath().replace("\\", "/")));
+        try {
+            BufferedImage fotoBuff = ImageIO.read(new File(arquivo.getAbsolutePath().replace("\\", "/")));
+            Image foto = fotoBuff.getScaledInstance(150, 150, Image.SCALE_SMOOTH);
+            lbFoto.setIcon(new ImageIcon(foto));
+        } catch (IOException ex) {
+            Logger.getLogger(PainelPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btFotoActionPerformed
 
     private void mAbrirFichaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mAbrirFichaActionPerformed
@@ -1039,16 +908,16 @@ public class PainelPrincipal extends javax.swing.JFrame {
         Abrir.setResizable(false);
         Abrir.setLocation(550, 200);
         lbConsultar.setText("Consultar ficha por ID ou Rg :");
-        bConsultar.setText("Consultar");
+        btConsultar.setText("Consultar");
     }//GEN-LAST:event_mAbrirFichaActionPerformed
 
-    private void bConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bConsultarActionPerformed
-        if (bConsultar.getText().equals("Deletar")) {
+    private void btConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btConsultarActionPerformed
+        if (btConsultar.getText().equals("Deletar")) {
             Deletar();
         } else {
             Consultar();
         }
-    }//GEN-LAST:event_bConsultarActionPerformed
+    }//GEN-LAST:event_btConsultarActionPerformed
 
     private void txIdadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txIdadeActionPerformed
 
@@ -1116,12 +985,28 @@ public class PainelPrincipal extends javax.swing.JFrame {
         Abrir.setResizable(false);
         Abrir.setLocation(550, 200);
         lbConsultar.setText("Deletar ficha por ID ou Rg :");
-        bConsultar.setText("Deletar");
+        btConsultar.setText("Deletar");
     }//GEN-LAST:event_mDeletarFichaActionPerformed
 
     private void mSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mSairActionPerformed
         System.exit(0);
     }//GEN-LAST:event_mSairActionPerformed
+
+    private void AbrirHistoricoRendimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AbrirHistoricoRendimentoActionPerformed
+        AbrirHistoricoRendimento1.setVisible(true);
+        AbrirHistoricoRendimento1.setSize(600, 420);
+        AbrirHistoricoRendimento1.setLocation(450, 200);
+        AbrirHistoricoRendimento1.setResizable(false);
+    }//GEN-LAST:event_AbrirHistoricoRendimentoActionPerformed
+
+    private void btProcurarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btProcurarActionPerformed
+        Abrir.setVisible(true);
+        Abrir.setSize(400, 200);
+        Abrir.setResizable(false);
+        Abrir.setLocation(550, 200);
+        lbConsultar.setText("Consultar Aluno por Id ou RG :");
+        btConsultar.setText("Procurar");
+    }//GEN-LAST:event_btProcurarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1164,24 +1049,29 @@ public class PainelPrincipal extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JFrame Abrir;
+    private javax.swing.JMenuItem AbrirHistoricoProjeto;
+    private javax.swing.JFrame AbrirHistoricoProjeto1;
+    private javax.swing.JMenuItem AbrirHistoricoRendimento;
+    private javax.swing.JFrame AbrirHistoricoRendimento1;
     private javax.swing.JPanel PanelAbrir;
-    private javax.swing.JButton bConsultar;
     private javax.swing.JButton btCadastrar;
+    private javax.swing.JButton btConsultar;
     private javax.swing.JButton btEditar;
+    private javax.swing.JButton btEditarAluno;
     private javax.swing.JButton btFoto;
     private javax.swing.JButton btLimpar;
+    private javax.swing.JButton btProcurar;
     private javax.swing.JButton btSalvar;
     private javax.swing.JButton btVoltar;
     private javax.swing.JComboBox cbSexo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
@@ -1214,7 +1104,11 @@ public class PainelPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem mDeletarFicha;
     private javax.swing.JMenuItem mSair;
     private javax.swing.JMenuBar menu;
+    private javax.swing.JPanel panelHistoricoProjeto;
     private javax.swing.JPanel panelPrincipal;
+    private javax.swing.JPanel panelRendimento;
+    private javax.swing.JScrollPane panelTabela;
+    private javax.swing.JTable tabela;
     private javax.swing.JTextField txBairro;
     private javax.swing.JFormattedTextField txCPF;
     private javax.swing.JTextField txConsultar;
@@ -1236,4 +1130,323 @@ public class PainelPrincipal extends javax.swing.JFrame {
     private javax.swing.JTextField txSemestre;
     private javax.swing.JTextField txSerie;
     // End of variables declaration//GEN-END:variables
+    private void Pesquisar() {
+        con = null;
+        aluno.setConsulta(Integer.parseInt(txConsultar.getText()));
+        if (con == null) {
+            try {
+                con = ConexaoDB.getConexao();
+                stm = con.createStatement();
+                String sql;
+                sql = "SELECT nome_aluno, nome_projeto FROM inscricao WHERE idAluno = '" + aluno.getConsulta() + "' OR rg = '" + aluno.getConsulta() + "';";
+                rs = stm.executeQuery(sql);//sadfasdfasdfasdfasdfsafddsf
+                rs.next();
+                System.out.println(rs.getString("nome_aluno"));
+                if (rs.first()) { //deu merda
+                    Abrir.setVisible(false);
+                    AbrirHistoricoProjeto1.setFocusableWindowState(true);
+                } else {
+                    JOptionPane.showMessageDialog(this, "ID ou RG não encontrados!!");
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void Deletar() {
+        con = null;
+        if (con == null) {
+            try {
+                con = ConexaoDB.getConexao();
+                stm = con.createStatement();
+                String sql;
+                sql = "DELETE FROM inscricao WHERE idAluno = '" + aluno.getConsulta() + "' OR rg = '" + aluno.getConsulta() + "';";
+                stm.execute(sql);
+                JOptionPane.showMessageDialog(this, "Dados deletados com sucesso!");
+                Abrir.setVisible(false);
+                txConsultar.setText("");
+                lbConsultar.setText("Consultar ficha por ID ou Rg :");
+                btConsultar.setText("Consultar");
+
+                txBairro.setText("");
+                txContatoMae.setText("");
+                txContatoPai.setText("");
+                txDtNascimento.setText("");
+                txEndereco.setText("");
+                txFim.setText("");
+                txIdade.setText("");
+                txInicio.setText("");
+                txNomeAluno.setText("");
+                txNomeEscola.setText("");
+                txNomeMae.setText("");
+                txNomePai.setText("");
+                txNomeProjeto.setText("");
+                txNumeroCasa.setText("");
+                txRendimentoEscolar.setText("");
+                txRg.setText("");
+                txSemestre.setText("");
+                txSerie.setText("");
+                lbFoto.setIcon(null);
+                txCPF.setText("");
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void Atualizar() {
+        con = null;
+        aluno.setNomeAluno(txNomeAluno.getText());
+        aluno.setNomeEscola(txNomeEscola.getText());
+        aluno.setNomeMae(txNomeMae.getText());
+        aluno.setNomePai(txNomePai.getText());
+        aluno.setNomeProjeto(txNomeProjeto.getText());
+        aluno.setBairro(txBairro.getText());
+        aluno.setDtFim(txFim.getText());
+        aluno.setDtInicio(txInicio.getText());
+        aluno.setDtNascimento(txDtNascimento.getText());
+        aluno.setEndereco(txEndereco.getText());
+        aluno.setIdade(Integer.parseInt(txIdade.getText()));
+        aluno.setRendimentoEscolar(txRendimentoEscolar.getText());
+        aluno.setRg(Integer.parseInt(txRg.getText()));
+        aluno.setSemestre(txSemestre.getText());
+        aluno.setSexo(cbSexo.getSelectedItem().toString());
+        aluno.setTelMae(Integer.parseInt(txContatoMae.getText()));
+        aluno.setTelPai(Integer.parseInt(txContatoPai.getText()));
+        aluno.setCpf(txCPF.getText());
+        aluno.setnCasa(txNumeroCasa.getText());
+        aluno.setSerie(txSerie.getText());
+        aluno.setFoto(arquivo.getAbsolutePath().replace("\\", "/").toString());
+        if (con == null) {
+            try {
+                con = ConexaoDB.getConexao();
+                stm = con.createStatement();
+                String sql;
+                sql = "UPDATE inscricao SET nome_projeto = '" + aluno.getNomeProjeto() + "',"
+                        + "dt_inicio = '" + aluno.getDtInicio() + "',"
+                        + "dt_fim = '" + aluno.getDtFim() + "',"
+                        + "nome_aluno = '" + aluno.getNomeAluno() + "',"
+                        + "dt_nascimento = '" + aluno.getDtNascimento() + "',"
+                        + "sexo = '" + aluno.getSexo() + "',"
+                        + "idade = '" + aluno.getIdade() + "',"
+                        + "nm_pai = '" + aluno.getNomePai() + "',"
+                        + "nm_mae = '" + aluno.getNomeMae() + "',"
+                        + "contatoMae = '" + aluno.getTelMae() + "',"
+                        + "contatoPai = '" + aluno.getTelPai() + "',"
+                        + "endereco = '" + aluno.getEndereco() + "',"
+                        + "nCasa = '" + aluno.getnCasa() + "',"
+                        + "bairro = '" + aluno.getBairro() + "',"
+                        + "nm_escola = '" + aluno.getNomeEscola() + "',"
+                        + "serie = '" + aluno.getSerie() + "',"
+                        + "rendimento_escolar = '" + aluno.getRendimentoEscolar() + "',"
+                        + "semestre = '" + aluno.getSemestre() + "',"
+                        + "foto = '" + aluno.getFoto() + "',"
+                        + "rg = '" + aluno.getRg() + "', "
+                        + "cpf = '" + aluno.getCpf() + "' WHERE idAluno = '" + aluno.getConsulta() + "' OR idAluno = '" + aluno.getConsulta() + "'";
+                stm.executeUpdate(sql);
+                JOptionPane.showMessageDialog(this, "Dados Atualizados com sucesso");
+
+                txBairro.setText("");
+                txContatoMae.setText("");
+                txContatoPai.setText("");
+                txDtNascimento.setText("");
+                txEndereco.setText("");
+                txFim.setText("");
+                txIdade.setText("");
+                txInicio.setText("");
+                txNomeAluno.setText("");
+                txNomeEscola.setText("");
+                txNomeMae.setText("");
+                txNomePai.setText("");
+                txNomeProjeto.setText("");
+                txNumeroCasa.setText("");
+                txRendimentoEscolar.setText("");
+                txRg.setText("");
+                txSemestre.setText("");
+                txSerie.setText("");
+                lbFoto.setIcon(null);
+                txConsultar.setText("");
+                txCPF.setText("");
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+
+            }
+        }
+    }
+
+    public void Consultar() {
+        con = null;
+        aluno.setConsulta(Integer.parseInt(txConsultar.getText()));
+        if (con == null) {
+            try {
+                con = ConexaoDB.getConexao();
+                stm = con.createStatement();
+                String sql;
+                sql = "SELECT * FROM inscricao WHERE idAluno = " + aluno.getConsulta() + " OR rg = " + aluno.getConsulta() + ";";
+                rs = stm.executeQuery(sql);
+                rs.next();
+                if (rs.isFirst()) {
+                    txNomeProjeto.setText(rs.getString("nome_projeto"));
+                    txInicio.setText(rs.getString("dt_inicio"));
+                    txFim.setText(rs.getString("dt_fim"));
+                    txNomeAluno.setText(rs.getString("nome_aluno"));
+                    txDtNascimento.setText(rs.getString("dt_nascimento"));
+                    cbSexo.setSelectedItem(rs.getString("sexo"));
+                    txIdade.setText(rs.getString("idade"));
+                    txNomePai.setText(rs.getString("nm_pai"));
+                    txNomeMae.setText(rs.getString("nm_mae"));
+                    txContatoMae.setText(rs.getString("contatoMae"));
+                    txContatoPai.setText(rs.getString("contatoPai"));
+                    txEndereco.setText(rs.getString("endereco"));
+                    txNumeroCasa.setText(rs.getString("nCasa"));
+                    txBairro.setText(rs.getString("bairro"));
+                    txNomeEscola.setText(rs.getString("nm_escola"));
+                    txRendimentoEscolar.setText(rs.getString("rendimento_escolar"));
+                    txSemestre.setText(rs.getString("semestre"));
+                    txRg.setText(rs.getString("rg"));
+                    txSerie.setText(rs.getString("serie"));
+                    txCPF.setText(rs.getString("cpf"));
+                    lbFoto.setIcon(new ImageIcon(rs.getString("foto")));
+                    Abrir.setVisible(false);
+
+                    txNomeProjeto.setEditable(false);
+                    txInicio.setEditable(false);
+                    txFim.setEditable(false);
+                    txNomeAluno.setEditable(false);
+                    txDtNascimento.setEditable(false);
+                    txIdade.setEditable(false);
+                    txNomePai.setEditable(false);
+                    txNomeMae.setEditable(false);
+                    txContatoMae.setEditable(false);
+                    txContatoPai.setEditable(false);
+                    txEndereco.setEditable(false);
+                    txNumeroCasa.setEditable(false);
+                    txBairro.setEditable(false);
+                    txNomeEscola.setEditable(false);
+                    txRendimentoEscolar.setEditable(false);
+                    txSemestre.setEditable(false);
+                    txRg.setEditable(false);
+                    txSerie.setEditable(false);
+                    txCPF.setEditable(false);
+
+                    btFoto.setVisible(false);
+                    btLimpar.setVisible(false);
+                    btCadastrar.setVisible(false);
+                    btEditar.setVisible(true);
+                    btSalvar.setVisible(true);
+                } else {
+                    JOptionPane.showMessageDialog(this, "ID ou Rg não cadastrados no banco!");
+                }
+            } catch (SQLException sqlex) {
+                sqlex.printStackTrace();
+            }
+        }
+    }
+
+    public void Cadastrar() {
+        //VERIFICANDO CAMPOS VÁZIOS 
+        if (txBairro.getText().equals("") || txContatoMae.getText().equals("") || txContatoPai.getText().equals("")
+                || txDtNascimento.getText().equals("") || txEndereco.getText().equals("") || txFim.getText().equals("")
+                || txFim.getText().equals("") || txIdade.getText().equals("") || txNomeAluno.getText().equals("")
+                || txNomeEscola.getText().equals("") || txNomeMae.getText().equals("") || txNomePai.getText().equals("")
+                || txNomeProjeto.getText().equals("") || txNumeroCasa.getText().equals("") || txRendimentoEscolar.getText().equals("")
+                || txRg.getText().equals("") || txSemestre.getText().equals("") || txSerie.getText().equals("") || txCPF.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Existem campos a serem preenchidos ! ");
+        }
+        con = null;
+        //SETANDO OS CAMPOS DA FICHA DE INSCRIÇÃO
+        aluno.setNomeAluno(txNomeAluno.getText());
+        aluno.setNomeEscola(txNomeEscola.getText());
+        aluno.setNomeMae(txNomeMae.getText());
+        aluno.setNomePai(txNomePai.getText());
+        aluno.setNomeProjeto(txNomeProjeto.getText());
+        aluno.setBairro(txBairro.getText());
+        aluno.setDtFim(txFim.getText());
+        aluno.setDtInicio(txInicio.getText());
+        aluno.setDtNascimento(txDtNascimento.getText());
+        aluno.setEndereco(txEndereco.getText());
+        aluno.setIdade(Integer.parseInt(txIdade.getText()));
+        aluno.setRendimentoEscolar(txRendimentoEscolar.getText());
+        aluno.setRg(Integer.parseInt(txRg.getText()));
+        aluno.setSemestre(txSemestre.getText());
+        aluno.setSexo(cbSexo.getSelectedItem().toString());
+        aluno.setTelMae(Integer.parseInt(txContatoMae.getText()));
+        aluno.setTelPai(Integer.parseInt(txContatoPai.getText()));
+        aluno.setnCasa(txNumeroCasa.getText());
+        aluno.setSerie(txSerie.getText());
+        aluno.setCpf(txCPF.getText());
+        aluno.setFoto(arquivo.getAbsolutePath().replace("\\", "/").toString());
+
+        if (con == null) {
+            try {
+                con = ConexaoDB.getConexao();
+                stm = con.createStatement();
+
+                //INICIALIZANDO OS VALORES PARA ARMAZENAR NO BANCO 
+                String sql;
+                sql = "INSERT INTO inscricao (idAluno, nome_projeto, dt_inicio, dt_fim, nome_aluno, dt_nascimento, sexo, idade, nm_pai, nm_mae,"
+                        + "contatoMae, contatoPai, endereco, nCasa, bairro, nm_escola, serie, rendimento_escolar, semestre, ht_projetos, ht_escolar, foto, rg, cpf) "
+                        + "VALUES(null,"
+                        + "'" + aluno.getNomeProjeto() + "',"
+                        + "'" + aluno.getDtInicio() + "',"
+                        + "'" + aluno.getDtFim() + "',"
+                        + "'" + aluno.getNomeAluno() + "',"
+                        + "'" + aluno.getDtNascimento() + "',"
+                        + "'" + aluno.getSexo() + "',"
+                        + "'" + aluno.getIdade() + "',"
+                        + "'" + aluno.getNomePai() + "',"
+                        + "'" + aluno.getNomeMae() + "',"
+                        + "'" + aluno.getTelMae() + "',"
+                        + "'" + aluno.getTelPai() + "',"
+                        + "'" + aluno.getEndereco() + "',"
+                        + "'" + aluno.getnCasa() + "',"
+                        + "'" + aluno.getBairro() + "',"
+                        + "'" + aluno.getNomeEscola() + "',"
+                        + "'" + aluno.getSerie() + "',"
+                        + "'" + aluno.getRendimentoEscolar() + "',"
+                        + "'" + aluno.getSemestre() + "',"
+                        + "null, null,"
+                        + "'" + aluno.getFoto() + "',"
+                        + "'" + aluno.getRg() + ""
+                        + "', '" + aluno.getCpf() + "')";
+                stm.executeUpdate(sql);
+                JOptionPane.showMessageDialog(this, "Dados cadastrados com sucesso!");
+
+                //LIMPAR CAMPOS APÓS CADASTRO
+                txBairro.setText("");
+                txContatoMae.setText("");
+                txContatoPai.setText("");
+                txDtNascimento.setText("");
+                txEndereco.setText("");
+                txFim.setText("");
+                txIdade.setText("");
+                txInicio.setText("");
+                txNomeAluno.setText("");
+                txNomeEscola.setText("");
+                txNomeMae.setText("");
+                txNomePai.setText("");
+                txNomeProjeto.setText("");
+                txNumeroCasa.setText("");
+                txRendimentoEscolar.setText("");
+                txRg.setText("");
+                txSemestre.setText("");
+                txSerie.setText("");
+                txCPF.setText("");
+                lbFoto.setIcon(null);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+
+    }
+
+    public static Image createFaviIcon(String fileName) {
+        URL url = Image.class.getResource("/img/logo.png");
+        Image faviIcon = Toolkit.getDefaultToolkit().getImage(url);
+        return faviIcon;
+    }
 }
+
