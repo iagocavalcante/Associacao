@@ -79,6 +79,13 @@ public class PainelPrincipal extends javax.swing.JFrame {
         btEditarAluno = new javax.swing.JButton();
         AbrirHistoricoRendimento1 = new javax.swing.JFrame();
         panelRendimento = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        atRendimento = new javax.swing.JTextArea();
+        btAbrirAluno = new javax.swing.JButton();
+        btEditarRendimento = new javax.swing.JButton();
+        lbAluno = new javax.swing.JLabel();
+        lbNome = new javax.swing.JLabel();
+        btAtualizar = new javax.swing.JButton();
         panelPrincipal = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
@@ -294,36 +301,91 @@ public class PainelPrincipal extends javax.swing.JFrame {
                     .addGap(0, 147, Short.MAX_VALUE)))
         );
 
+        panelRendimento.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Rendimento Escolar", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial Rounded MT Bold", 1, 18))); // NOI18N
+
+        atRendimento.setEditable(false);
+        atRendimento.setColumns(20);
+        atRendimento.setRows(5);
+        jScrollPane2.setViewportView(atRendimento);
+
+        btAbrirAluno.setText("Abrir");
+        btAbrirAluno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btAbrirAlunoActionPerformed(evt);
+            }
+        });
+
+        btEditarRendimento.setText("Editar");
+        btEditarRendimento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btEditarRendimentoActionPerformed(evt);
+            }
+        });
+
+        lbAluno.setText("Aluno :");
+
+        lbNome.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+
+        btAtualizar.setText("Salvar");
+        btAtualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btAtualizarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelRendimentoLayout = new javax.swing.GroupLayout(panelRendimento);
         panelRendimento.setLayout(panelRendimentoLayout);
         panelRendimentoLayout.setHorizontalGroup(
             panelRendimentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGroup(panelRendimentoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelRendimentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2)
+                    .addGroup(panelRendimentoLayout.createSequentialGroup()
+                        .addComponent(lbAluno)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lbNome, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 174, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addGroup(panelRendimentoLayout.createSequentialGroup()
+                .addGap(182, 182, 182)
+                .addComponent(btAbrirAluno)
+                .addGap(18, 18, 18)
+                .addComponent(btEditarRendimento)
+                .addGap(18, 18, 18)
+                .addComponent(btAtualizar)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelRendimentoLayout.setVerticalGroup(
             panelRendimentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGroup(panelRendimentoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelRendimentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lbAluno)
+                    .addComponent(lbNome, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panelRendimentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btEditarRendimento)
+                    .addComponent(btAbrirAluno)
+                    .addComponent(btAtualizar))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout AbrirHistoricoRendimento1Layout = new javax.swing.GroupLayout(AbrirHistoricoRendimento1.getContentPane());
         AbrirHistoricoRendimento1.getContentPane().setLayout(AbrirHistoricoRendimento1Layout);
         AbrirHistoricoRendimento1Layout.setHorizontalGroup(
             AbrirHistoricoRendimento1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 600, Short.MAX_VALUE)
             .addGroup(AbrirHistoricoRendimento1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(AbrirHistoricoRendimento1Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(panelRendimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                .addComponent(panelRendimento, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         AbrirHistoricoRendimento1Layout.setVerticalGroup(
             AbrirHistoricoRendimento1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGap(0, 326, Short.MAX_VALUE)
             .addGroup(AbrirHistoricoRendimento1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(AbrirHistoricoRendimento1Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(panelRendimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                .addComponent(panelRendimento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -914,8 +976,14 @@ public class PainelPrincipal extends javax.swing.JFrame {
     private void btConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btConsultarActionPerformed
         if (btConsultar.getText().equals("Deletar")) {
             Deletar();
-        } else {
+        }
+        if (btConsultar.getText().equals("Consultar")) {
             Consultar();
+        }
+        if (btConsultar.getText().equals("Pesquisar")) {
+            Pesquisar();
+        } else {
+            Abrir();
         }
     }//GEN-LAST:event_btConsultarActionPerformed
 
@@ -994,7 +1062,7 @@ public class PainelPrincipal extends javax.swing.JFrame {
 
     private void AbrirHistoricoRendimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AbrirHistoricoRendimentoActionPerformed
         AbrirHistoricoRendimento1.setVisible(true);
-        AbrirHistoricoRendimento1.setSize(600, 420);
+        AbrirHistoricoRendimento1.setSize(600, 320);
         AbrirHistoricoRendimento1.setLocation(450, 200);
         AbrirHistoricoRendimento1.setResizable(false);
     }//GEN-LAST:event_AbrirHistoricoRendimentoActionPerformed
@@ -1005,8 +1073,26 @@ public class PainelPrincipal extends javax.swing.JFrame {
         Abrir.setResizable(false);
         Abrir.setLocation(550, 200);
         lbConsultar.setText("Consultar Aluno por Id ou RG :");
-        btConsultar.setText("Procurar");
+        btConsultar.setText("Pesquisar");
     }//GEN-LAST:event_btProcurarActionPerformed
+
+    private void btAbrirAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAbrirAlunoActionPerformed
+        Abrir.setVisible(true);
+        Abrir.setSize(400, 200);
+        Abrir.setResizable(false);
+        Abrir.setLocation(550, 200);
+        lbConsultar.setText("Consultar Aluno por Id ou RG :");
+        btConsultar.setText("Abrir");
+    }//GEN-LAST:event_btAbrirAlunoActionPerformed
+
+    private void btEditarRendimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditarRendimentoActionPerformed
+        atRendimento.setEditable(true);
+        JOptionPane.showMessageDialog(AbrirHistoricoRendimento1, "Área de texto agora pode ser editada!");
+    }//GEN-LAST:event_btEditarRendimentoActionPerformed
+
+    private void btAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAtualizarActionPerformed
+        Salvar();
+    }//GEN-LAST:event_btAtualizarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1054,10 +1140,14 @@ public class PainelPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem AbrirHistoricoRendimento;
     private javax.swing.JFrame AbrirHistoricoRendimento1;
     private javax.swing.JPanel PanelAbrir;
+    private javax.swing.JTextArea atRendimento;
+    private javax.swing.JButton btAbrirAluno;
+    private javax.swing.JButton btAtualizar;
     private javax.swing.JButton btCadastrar;
     private javax.swing.JButton btConsultar;
     private javax.swing.JButton btEditar;
     private javax.swing.JButton btEditarAluno;
+    private javax.swing.JButton btEditarRendimento;
     private javax.swing.JButton btFoto;
     private javax.swing.JButton btLimpar;
     private javax.swing.JButton btProcurar;
@@ -1074,7 +1164,9 @@ public class PainelPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JLabel lbAluno;
     private javax.swing.JLabel lbBairro;
     private javax.swing.JLabel lbCPF;
     private javax.swing.JLabel lbConsultar;
@@ -1086,6 +1178,7 @@ public class PainelPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel lbFoto;
     private javax.swing.JLabel lbIdade;
     private javax.swing.JLabel lbInicio;
+    private javax.swing.JLabel lbNome;
     private javax.swing.JLabel lbNomeAluno;
     private javax.swing.JLabel lbNomeEscola;
     private javax.swing.JLabel lbNomeMae;
@@ -1146,7 +1239,7 @@ public class PainelPrincipal extends javax.swing.JFrame {
                     Abrir.setVisible(false);
                     AbrirHistoricoProjeto1.setFocusableWindowState(true);
                 } else {
-                    JOptionPane.showMessageDialog(this, "ID ou RG não encontrados!!");
+                    JOptionPane.showMessageDialog(AbrirHistoricoRendimento1, "ID ou RG não encontrados!!");
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -1407,7 +1500,8 @@ public class PainelPrincipal extends javax.swing.JFrame {
                         + "'" + aluno.getSerie() + "',"
                         + "'" + aluno.getRendimentoEscolar() + "',"
                         + "'" + aluno.getSemestre() + "',"
-                        + "null, null,"
+                        + "'" + aluno.getNomeProjeto() + "',"
+                        + "'" + aluno.getRendimentoEscolar() + "',"
                         + "'" + aluno.getFoto() + "',"
                         + "'" + aluno.getRg() + ""
                         + "', '" + aluno.getCpf() + "')";
@@ -1448,5 +1542,47 @@ public class PainelPrincipal extends javax.swing.JFrame {
         Image faviIcon = Toolkit.getDefaultToolkit().getImage(url);
         return faviIcon;
     }
-}
 
+    private void Abrir() {
+        con = null;
+        aluno.setConsulta(Integer.parseInt(txConsultar.getText()));
+        if (con == null) {
+            try {
+                con = ConexaoDB.getConexao();
+                stm = con.createStatement();
+                String sql;
+                sql = "SELECT nome_aluno, rendimento_escolar FROM inscricao WHERE idAluno = '" + aluno.getConsulta() + "' OR rg = '" + aluno.getConsulta() + "';";
+                rs = stm.executeQuery(sql);
+                rs.next();
+                if (rs.first()) {
+                    lbNome.setText(rs.getString("nome_aluno"));
+                    atRendimento.setText(rs.getString("rendimento_escolar"));
+                    Abrir.setVisible(false);
+                } else {
+                    JOptionPane.showMessageDialog(this, "Aluno não Cadastrado !!");
+                }
+            } catch (SQLException e) {
+
+            }
+        }
+    }
+
+    private void Salvar() {
+        con = null;
+        aluno.setRendimentoEscolar(atRendimento.getText());
+        if (con == null) {
+            try {
+                con = ConexaoDB.getConexao();
+                stm = con.createStatement();
+                String sql;
+                sql = "UPDATE inscricao SET rendimento_escolar = '" + aluno.getRendimentoEscolar() + "';";
+                stm.executeUpdate(sql);
+                JOptionPane.showMessageDialog(this, "Rendimento Escolar do Aluno: \n" + lbNome.getText() + " "
+                        + "Atualizado com sucesso");
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}
