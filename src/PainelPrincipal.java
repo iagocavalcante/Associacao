@@ -72,11 +72,13 @@ public class PainelPrincipal extends javax.swing.JFrame {
         txConsultar = new javax.swing.JTextField();
         AbrirHistoricoProjeto1 = new javax.swing.JFrame();
         panelHistoricoProjeto = new javax.swing.JPanel();
-        panelTabela = new javax.swing.JScrollPane();
-        tabela = new javax.swing.JTable();
-        jLabel4 = new javax.swing.JLabel();
-        btProcurar = new javax.swing.JButton();
-        btEditarAluno = new javax.swing.JButton();
+        jScroll = new javax.swing.JScrollPane();
+        atHtProjeto = new javax.swing.JTextArea();
+        btAbrirProjeto = new javax.swing.JButton();
+        btEditarProjeto = new javax.swing.JButton();
+        lbAlunoProj = new javax.swing.JLabel();
+        lbNomeAlu = new javax.swing.JLabel();
+        btAtualizarHtProj = new javax.swing.JButton();
         AbrirHistoricoRendimento1 = new javax.swing.JFrame();
         panelRendimento = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -211,94 +213,92 @@ public class PainelPrincipal extends javax.swing.JFrame {
 
         AbrirHistoricoProjeto1.setResizable(false);
 
+        panelHistoricoProjeto.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Histórico de Projetos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial Rounded MT Bold", 1, 18))); // NOI18N
+
+        atHtProjeto.setEditable(false);
+        atHtProjeto.setColumns(20);
+        atHtProjeto.setRows(5);
+        jScroll.setViewportView(atHtProjeto);
+
+        btAbrirProjeto.setText("Abrir");
+        btAbrirProjeto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btAbrirProjetoActionPerformed(evt);
+            }
+        });
+
+        btEditarProjeto.setText("Editar");
+        btEditarProjeto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btEditarProjetoActionPerformed(evt);
+            }
+        });
+
+        lbAlunoProj.setText("Aluno :");
+
+        lbNomeAlu.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+
+        btAtualizarHtProj.setText("Salvar");
+        btAtualizarHtProj.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btAtualizarHtProjActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelHistoricoProjetoLayout = new javax.swing.GroupLayout(panelHistoricoProjeto);
         panelHistoricoProjeto.setLayout(panelHistoricoProjetoLayout);
         panelHistoricoProjetoLayout.setHorizontalGroup(
             panelHistoricoProjetoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGroup(panelHistoricoProjetoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelHistoricoProjetoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScroll)
+                    .addGroup(panelHistoricoProjetoLayout.createSequentialGroup()
+                        .addComponent(lbAlunoProj)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lbNomeAlu, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 174, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addGroup(panelHistoricoProjetoLayout.createSequentialGroup()
+                .addGap(182, 182, 182)
+                .addComponent(btAbrirProjeto)
+                .addGap(18, 18, 18)
+                .addComponent(btEditarProjeto)
+                .addGap(18, 18, 18)
+                .addComponent(btAtualizarHtProj)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelHistoricoProjetoLayout.setVerticalGroup(
             panelHistoricoProjetoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGroup(panelHistoricoProjetoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelHistoricoProjetoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lbAlunoProj)
+                    .addComponent(lbNomeAlu, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScroll, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(panelHistoricoProjetoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btEditarProjeto)
+                    .addComponent(btAbrirProjeto)
+                    .addComponent(btAtualizarHtProj))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
-
-        tabela.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null}
-            },
-            new String [] {
-                "Nome do Aluno", "Participação em Projetos"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        tabela.setToolTipText("");
-        panelTabela.setViewportView(tabela);
-
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel4.setText("Histórico de Participação de Projetos");
-
-        btProcurar.setText("Procurar");
-        btProcurar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btProcurarActionPerformed(evt);
-            }
-        });
-
-        btEditarAluno.setText("Editar");
 
         javax.swing.GroupLayout AbrirHistoricoProjeto1Layout = new javax.swing.GroupLayout(AbrirHistoricoProjeto1.getContentPane());
         AbrirHistoricoProjeto1.getContentPane().setLayout(AbrirHistoricoProjeto1Layout);
         AbrirHistoricoProjeto1Layout.setHorizontalGroup(
             AbrirHistoricoProjeto1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelTabela, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
             .addGroup(AbrirHistoricoProjeto1Layout.createSequentialGroup()
-                .addGroup(AbrirHistoricoProjeto1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(AbrirHistoricoProjeto1Layout.createSequentialGroup()
-                        .addGap(174, 174, 174)
-                        .addComponent(jLabel4))
-                    .addGroup(AbrirHistoricoProjeto1Layout.createSequentialGroup()
-                        .addGap(209, 209, 209)
-                        .addComponent(btProcurar)
-                        .addGap(33, 33, 33)
-                        .addComponent(btEditarAluno)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(AbrirHistoricoProjeto1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(AbrirHistoricoProjeto1Layout.createSequentialGroup()
-                    .addGap(0, 250, Short.MAX_VALUE)
-                    .addComponent(panelHistoricoProjeto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 250, Short.MAX_VALUE)))
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(panelHistoricoProjeto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         AbrirHistoricoProjeto1Layout.setVerticalGroup(
             AbrirHistoricoProjeto1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AbrirHistoricoProjeto1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panelTabela, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(AbrirHistoricoProjeto1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btProcurar)
-                    .addComponent(btEditarAluno))
-                .addGap(17, 17, 17))
-            .addGroup(AbrirHistoricoProjeto1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(AbrirHistoricoProjeto1Layout.createSequentialGroup()
-                    .addGap(0, 148, Short.MAX_VALUE)
-                    .addComponent(panelHistoricoProjeto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 147, Short.MAX_VALUE)))
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(panelHistoricoProjeto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         panelRendimento.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Rendimento Escolar", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial Rounded MT Bold", 1, 18))); // NOI18N
@@ -927,7 +927,7 @@ public class PainelPrincipal extends javax.swing.JFrame {
 
     private void AbrirHistoricoProjetoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AbrirHistoricoProjetoActionPerformed
         AbrirHistoricoProjeto1.setVisible(true);
-        AbrirHistoricoProjeto1.setSize(600, 420);
+        AbrirHistoricoProjeto1.setSize(600, 320);
         AbrirHistoricoProjeto1.setLocation(450, 200);
         AbrirHistoricoProjeto1.setResizable(false);
     }//GEN-LAST:event_AbrirHistoricoProjetoActionPerformed
@@ -982,6 +982,8 @@ public class PainelPrincipal extends javax.swing.JFrame {
         }
         if (btConsultar.getText().equals("Pesquisar")) {
             Pesquisar();
+        }if (btConsultar.getText().equals("Abrir Projeto")) {
+            AbrirProjeto();
         } else {
             Abrir();
         }
@@ -1067,15 +1069,6 @@ public class PainelPrincipal extends javax.swing.JFrame {
         AbrirHistoricoRendimento1.setResizable(false);
     }//GEN-LAST:event_AbrirHistoricoRendimentoActionPerformed
 
-    private void btProcurarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btProcurarActionPerformed
-        Abrir.setVisible(true);
-        Abrir.setSize(400, 200);
-        Abrir.setResizable(false);
-        Abrir.setLocation(550, 200);
-        lbConsultar.setText("Consultar Aluno por Id ou RG :");
-        btConsultar.setText("Pesquisar");
-    }//GEN-LAST:event_btProcurarActionPerformed
-
     private void btAbrirAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAbrirAlunoActionPerformed
         Abrir.setVisible(true);
         Abrir.setSize(400, 200);
@@ -1093,6 +1086,24 @@ public class PainelPrincipal extends javax.swing.JFrame {
     private void btAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAtualizarActionPerformed
         Salvar();
     }//GEN-LAST:event_btAtualizarActionPerformed
+
+    private void btAbrirProjetoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAbrirProjetoActionPerformed
+        Abrir.setVisible(true);
+        Abrir.setSize(400, 200);
+        Abrir.setResizable(false);
+        Abrir.setLocation(550, 200);
+        lbConsultar.setText("Consultar Aluno por Id ou RG :");
+        btConsultar.setText("Abrir Projeto");
+    }//GEN-LAST:event_btAbrirProjetoActionPerformed
+
+    private void btEditarProjetoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditarProjetoActionPerformed
+        atHtProjeto.setEditable(true);
+        JOptionPane.showMessageDialog(AbrirHistoricoProjeto1, "Área de texto agora pode ser editada!");
+    }//GEN-LAST:event_btEditarProjetoActionPerformed
+
+    private void btAtualizarHtProjActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAtualizarHtProjActionPerformed
+        SalvarProjeto();
+    }//GEN-LAST:event_btAtualizarHtProjActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1140,33 +1151,36 @@ public class PainelPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem AbrirHistoricoRendimento;
     private javax.swing.JFrame AbrirHistoricoRendimento1;
     private javax.swing.JPanel PanelAbrir;
+    private javax.swing.JTextArea atHtProjeto;
     private javax.swing.JTextArea atRendimento;
     private javax.swing.JButton btAbrirAluno;
+    private javax.swing.JButton btAbrirProjeto;
     private javax.swing.JButton btAtualizar;
+    private javax.swing.JButton btAtualizarHtProj;
     private javax.swing.JButton btCadastrar;
     private javax.swing.JButton btConsultar;
     private javax.swing.JButton btEditar;
-    private javax.swing.JButton btEditarAluno;
+    private javax.swing.JButton btEditarProjeto;
     private javax.swing.JButton btEditarRendimento;
     private javax.swing.JButton btFoto;
     private javax.swing.JButton btLimpar;
-    private javax.swing.JButton btProcurar;
     private javax.swing.JButton btSalvar;
     private javax.swing.JButton btVoltar;
     private javax.swing.JComboBox cbSexo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScroll;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lbAluno;
+    private javax.swing.JLabel lbAlunoProj;
     private javax.swing.JLabel lbBairro;
     private javax.swing.JLabel lbCPF;
     private javax.swing.JLabel lbConsultar;
@@ -1179,6 +1193,7 @@ public class PainelPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel lbIdade;
     private javax.swing.JLabel lbInicio;
     private javax.swing.JLabel lbNome;
+    private javax.swing.JLabel lbNomeAlu;
     private javax.swing.JLabel lbNomeAluno;
     private javax.swing.JLabel lbNomeEscola;
     private javax.swing.JLabel lbNomeMae;
@@ -1200,8 +1215,6 @@ public class PainelPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel panelHistoricoProjeto;
     private javax.swing.JPanel panelPrincipal;
     private javax.swing.JPanel panelRendimento;
-    private javax.swing.JScrollPane panelTabela;
-    private javax.swing.JTable tabela;
     private javax.swing.JTextField txBairro;
     private javax.swing.JFormattedTextField txCPF;
     private javax.swing.JTextField txConsultar;
@@ -1429,6 +1442,7 @@ public class PainelPrincipal extends javax.swing.JFrame {
                     btCadastrar.setVisible(false);
                     btEditar.setVisible(true);
                     btSalvar.setVisible(true);
+                    btVoltar.setVisible(true);
                 } else {
                     JOptionPane.showMessageDialog(this, "ID ou Rg não cadastrados no banco!");
                 }
@@ -1551,12 +1565,12 @@ public class PainelPrincipal extends javax.swing.JFrame {
                 con = ConexaoDB.getConexao();
                 stm = con.createStatement();
                 String sql;
-                sql = "SELECT nome_aluno, rendimento_escolar FROM inscricao WHERE idAluno = '" + aluno.getConsulta() + "' OR rg = '" + aluno.getConsulta() + "';";
+                sql = "SELECT nome_aluno, ht_escolar FROM inscricao WHERE idAluno = '" + aluno.getConsulta() + "' OR rg = '" + aluno.getConsulta() + "';";
                 rs = stm.executeQuery(sql);
                 rs.next();
                 if (rs.first()) {
                     lbNome.setText(rs.getString("nome_aluno"));
-                    atRendimento.setText(rs.getString("rendimento_escolar"));
+                    atRendimento.setText(rs.getString("ht_escolar"));
                     Abrir.setVisible(false);
                 } else {
                     JOptionPane.showMessageDialog(this, "Aluno não Cadastrado !!");
@@ -1575,13 +1589,56 @@ public class PainelPrincipal extends javax.swing.JFrame {
                 con = ConexaoDB.getConexao();
                 stm = con.createStatement();
                 String sql;
-                sql = "UPDATE inscricao SET rendimento_escolar = '" + aluno.getRendimentoEscolar() + "';";
+                sql = "UPDATE inscricao SET ht_escolar = '" + aluno.getRendimentoEscolar() + "';";
                 stm.executeUpdate(sql);
                 JOptionPane.showMessageDialog(this, "Rendimento Escolar do Aluno: \n" + lbNome.getText() + " "
-                        + "Atualizado com sucesso");
+                        + "Atualizado com sucesso!");
 
             } catch (SQLException e) {
                 e.printStackTrace();
+            }
+        }
+    }
+
+    private void SalvarProjeto() {
+        con = null;
+        aluno.setHtProjeto(atHtProjeto.getText());
+        if (con == null) {
+            try {
+                con = ConexaoDB.getConexao();
+                stm = con.createStatement();
+                String sql;
+                sql = "UPDATE inscricao SET ht_projetos = '" + aluno.getHtProjeto()+ "';";
+                stm.executeUpdate(sql);
+                JOptionPane.showMessageDialog(this, "Histórico de Projetos do Aluno: \n" + lbNomeAlu.getText() + " "
+                        + "Atualizado com sucesso!");
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private void AbrirProjeto() {
+        con = null;
+        aluno.setConsulta(Integer.parseInt(txConsultar.getText()));
+        if (con == null) {
+            try {
+                con = ConexaoDB.getConexao();
+                stm = con.createStatement();
+                String sql;
+                sql = "SELECT nome_aluno, ht_projetos FROM inscricao WHERE idAluno = '" + aluno.getConsulta() + "' OR rg = '" + aluno.getConsulta() + "';";
+                rs = stm.executeQuery(sql);
+                rs.next();
+                if (rs.first()) {
+                    lbNomeAlu.setText(rs.getString("nome_aluno"));
+                    atHtProjeto.setText(rs.getString("ht_projetos"));
+                    Abrir.setVisible(false);
+                } else {
+                    JOptionPane.showMessageDialog(this, "Aluno não Cadastrado !!");
+                }
+            } catch (SQLException e) {
+
             }
         }
     }
