@@ -1047,6 +1047,26 @@ public class PainelPrincipal extends javax.swing.JFrame {
         txSerie.setText("");
         txCPF.setText("");
         lbFoto.setIcon(null);
+        
+        txBairro.setEditable(true);
+        txContatoMae.setEditable(true);
+        txContatoPai.setEditable(true);
+        txDtNascimento.setEditable(true);
+        txEndereco.setEditable(true);
+        txFim.setEditable(true);
+        txIdade.setEditable(true);
+        txInicio.setEditable(true);
+        txNomeAluno.setEditable(true);
+        txNomeEscola.setEditable(true);
+        txNomeMae.setEditable(true);
+        txNomePai.setEditable(true);
+        txNomeProjeto.setEditable(true);
+        txNumeroCasa.setEditable(true);
+        txRendimentoEscolar.setEditable(true);
+        txRg.setEditable(true);
+        txSemestre.setEditable(true);
+        txSerie.setEditable(true);
+        txCPF.setEditable(true);
     }//GEN-LAST:event_btVoltarActionPerformed
 
     private void mDeletarFichaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mDeletarFichaActionPerformed
