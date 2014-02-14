@@ -37,8 +37,8 @@ public class PainelPrincipal extends javax.swing.JFrame {
     JLabel logo = new JLabel();
     Aluno aluno = new Aluno();
     JFileChooser escolherFoto;
-    String caminho;
-    File arquivo;
+    String caminho = "";
+    File arquivo = null;
     JFrame abrirFrame;
     JPanel abrirPanel;
     ResultSet rs;
@@ -106,16 +106,13 @@ public class PainelPrincipal extends javax.swing.JFrame {
         lbSexo = new javax.swing.JLabel();
         cbSexo = new javax.swing.JComboBox();
         lbIdade = new javax.swing.JLabel();
-        txIdade = new javax.swing.JFormattedTextField();
         jSeparator1 = new javax.swing.JSeparator();
         lbNomePai = new javax.swing.JLabel();
         txNomePai = new javax.swing.JTextField();
         lbNomeMae = new javax.swing.JLabel();
         txNomeMae = new javax.swing.JTextField();
         lbContatoPai = new javax.swing.JLabel();
-        txContatoPai = new javax.swing.JFormattedTextField();
         lbContatoMae = new javax.swing.JLabel();
-        txContatoMae = new javax.swing.JFormattedTextField();
         lbEndereco = new javax.swing.JLabel();
         txEndereco = new javax.swing.JTextField();
         lbNumeroCasa = new javax.swing.JLabel();
@@ -137,7 +134,6 @@ public class PainelPrincipal extends javax.swing.JFrame {
         btLimpar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -145,8 +141,12 @@ public class PainelPrincipal extends javax.swing.JFrame {
         btSalvar = new javax.swing.JButton();
         btVoltar = new javax.swing.JButton();
         lbCPF = new javax.swing.JLabel();
-        txCPF = new javax.swing.JFormattedTextField();
+        txCPF = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
+        txIdade = new javax.swing.JTextField();
+        txContatoPai = new javax.swing.JTextField();
+        txContatoMae = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
         menu = new javax.swing.JMenuBar();
         mArquivo = new javax.swing.JMenu();
         mAbrirFicha = new javax.swing.JMenuItem();
@@ -442,17 +442,6 @@ public class PainelPrincipal extends javax.swing.JFrame {
         lbIdade.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lbIdade.setText("Idade :");
 
-        try {
-            txIdade.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        txIdade.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txIdadeActionPerformed(evt);
-            }
-        });
-
         jSeparator1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "DADOS DOS RESPONSÁVEIS", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial Rounded MT Bold", 0, 18), new java.awt.Color(0, 0, 0))); // NOI18N
 
         lbNomePai.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -464,20 +453,8 @@ public class PainelPrincipal extends javax.swing.JFrame {
         lbContatoPai.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lbContatoPai.setText("Contato Pai :");
 
-        try {
-            txContatoPai.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("########")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-
         lbContatoMae.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lbContatoMae.setText("Contato Mãe :");
-
-        try {
-            txContatoMae.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("########")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
 
         lbEndereco.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lbEndereco.setText("Endereço : ");
@@ -527,8 +504,6 @@ public class PainelPrincipal extends javax.swing.JFrame {
 
         jLabel2.setText("*");
 
-        jLabel3.setText("*");
-
         jLabel5.setText("*");
 
         jLabel6.setText("*");
@@ -560,13 +535,9 @@ public class PainelPrincipal extends javax.swing.JFrame {
         lbCPF.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lbCPF.setText("CPF :");
 
-        try {
-            txCPF.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###########")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-
         jLabel8.setText("*");
+
+        jLabel4.setText("*");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -594,10 +565,6 @@ public class PainelPrincipal extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lbIdade)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(txIdade, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel1))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lbInicio)
                                     .addComponent(txInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -605,16 +572,22 @@ public class PainelPrincipal extends javax.swing.JFrame {
                                         .addComponent(txRg, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jLabel5))
-                                    .addComponent(lbRg))
+                                    .addComponent(lbRg)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(txIdade, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel1)))
                                 .addGap(31, 31, 31)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lbCPF)
                                     .addComponent(lbFIm)
-                                    .addComponent(txFim, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
-                                    .addComponent(txCPF))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel8)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 270, Short.MAX_VALUE)
+                                    .addComponent(txFim, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(2, 2, 2)
+                                        .addComponent(txCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel8)))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btFoto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lbfoto1)
@@ -623,10 +596,10 @@ public class PainelPrincipal extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(txNomePai, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(lbEndereco))
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -642,11 +615,10 @@ public class PainelPrincipal extends javax.swing.JFrame {
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(lbNomePai)
-                                            .addComponent(txNomeMae, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(txNomePai, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGap(18, 18, 18)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(lbContatoPai)
-                                            .addComponent(txContatoPai))))
+                                        .addComponent(lbContatoPai))
+                                    .addComponent(txContatoPai, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel2)
                                 .addGap(43, 43, 43)
@@ -662,43 +634,39 @@ public class PainelPrincipal extends javax.swing.JFrame {
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(lbNomeMae)
-                                            .addComponent(txEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(txNomeMae, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGap(18, 18, 18)
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lbContatoMae)
                                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addComponent(lbContatoMae)
-                                                .addGap(0, 84, Short.MAX_VALUE))
-                                            .addComponent(txContatoMae)))))
+                                                .addComponent(txContatoMae, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jLabel4))))))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(txNomeEscola, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(lbNomeEscola))
+                                    .addComponent(txNomeEscola, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lbNomeEscola))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lbSerie)
+                                    .addComponent(txSerie, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                        .addComponent(btEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(lbSerie)
-                                            .addComponent(txSerie, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                                .addComponent(btEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(btSalvar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                                .addComponent(btCadastrar)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(btLimpar)))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(btVoltar)
-                                        .addGap(181, 181, 181)
-                                        .addComponent(jLabel6)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel7)))
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel3)
-                        .addContainerGap())))
+                                        .addComponent(btSalvar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                        .addComponent(btCadastrar)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(btLimpar)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btVoltar)
+                                .addGap(181, 181, 181)
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel7)))
+                        .addContainerGap(70, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -726,8 +694,8 @@ public class PainelPrincipal extends javax.swing.JFrame {
                             .addComponent(txNomeProjeto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txRg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5)
-                            .addComponent(txCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel8))
+                            .addComponent(jLabel8)
+                            .addComponent(txCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lbDtNascimento)
@@ -737,8 +705,8 @@ public class PainelPrincipal extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txDtNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(cbSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txIdade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1))
+                            .addComponent(jLabel1)
+                            .addComponent(txIdade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(96, 96, 96))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(lbfoto1)
@@ -751,27 +719,25 @@ public class PainelPrincipal extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(lbContatoMae)
-                                .addGap(26, 26, 26))
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(lbNomePai)
-                                        .addComponent(lbContatoPai))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(txNomeMae, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(txContatoPai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel2)))
-                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(lbNomePai)
+                                    .addComponent(lbContatoPai))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(txNomePai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel2)
+                                    .addComponent(txContatoPai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(lbNomeMae)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(txEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(txContatoMae, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel3)))))
+                                    .addComponent(lbContatoMae))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(txNomeMae, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txContatoMae, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel4))))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -780,7 +746,7 @@ public class PainelPrincipal extends javax.swing.JFrame {
                                     .addComponent(lbBairro))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(txNomePai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txBairro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txNumeroCasa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -884,7 +850,7 @@ public class PainelPrincipal extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(panelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1003, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -907,14 +873,14 @@ public class PainelPrincipal extends javax.swing.JFrame {
         txContatoMae.setText("");
         txContatoPai.setText("");
         txDtNascimento.setText("");
-        txEndereco.setText("");
+        txNomeMae.setText("");
         txFim.setText("");
         txIdade.setText("");
         txInicio.setText("");
         txNomeAluno.setText("");
         txNomeEscola.setText("");
-        txNomeMae.setText("");
         txNomePai.setText("");
+        txEndereco.setText("");
         txNomeProjeto.setText("");
         txNumeroCasa.setText("");
         txRendimentoEscolar.setText("");
@@ -939,8 +905,6 @@ public class PainelPrincipal extends javax.swing.JFrame {
     private void btFotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btFotoActionPerformed
         escolherFoto = new JFileChooser();
         escolherFoto.setFileFilter(new FileNameExtensionFilter("Arquivos de imagem", "jpg"));
-        caminho = "";
-        arquivo = null;
         int retorno = escolherFoto.showSaveDialog(null);
         if (retorno == JFileChooser.APPROVE_OPTION) {
             caminho = escolherFoto.getSelectedFile().getAbsolutePath();
@@ -982,16 +946,13 @@ public class PainelPrincipal extends javax.swing.JFrame {
         }
         if (btConsultar.getText().equals("Pesquisar")) {
             Pesquisar();
-        }if (btConsultar.getText().equals("Abrir Projeto")) {
+        }
+        if (btConsultar.getText().equals("Abrir Projeto")) {
             AbrirProjeto();
         } else {
             Abrir();
         }
     }//GEN-LAST:event_btConsultarActionPerformed
-
-    private void txIdadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txIdadeActionPerformed
-
-    }//GEN-LAST:event_txIdadeActionPerformed
 
     private void btEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditarActionPerformed
         txNomeProjeto.setEditable(true);
@@ -1000,11 +961,11 @@ public class PainelPrincipal extends javax.swing.JFrame {
         txNomeAluno.setEditable(true);
         txDtNascimento.setEditable(true);
         txIdade.setEditable(true);
+        txEndereco.setEditable(true);
         txNomePai.setEditable(true);
-        txNomeMae.setEditable(true);
         txContatoMae.setEditable(true);
         txContatoPai.setEditable(true);
-        txEndereco.setEditable(true);
+        txNomeMae.setEditable(true);
         txNumeroCasa.setEditable(true);
         txBairro.setEditable(true);
         txNomeEscola.setEditable(true);
@@ -1031,14 +992,14 @@ public class PainelPrincipal extends javax.swing.JFrame {
         txContatoMae.setText("");
         txContatoPai.setText("");
         txDtNascimento.setText("");
-        txEndereco.setText("");
+        txNomeMae.setText("");
         txFim.setText("");
         txIdade.setText("");
         txInicio.setText("");
         txNomeAluno.setText("");
         txNomeEscola.setText("");
-        txNomeMae.setText("");
         txNomePai.setText("");
+        txEndereco.setText("");
         txNomeProjeto.setText("");
         txNumeroCasa.setText("");
         txRendimentoEscolar.setText("");
@@ -1047,19 +1008,19 @@ public class PainelPrincipal extends javax.swing.JFrame {
         txSerie.setText("");
         txCPF.setText("");
         lbFoto.setIcon(null);
-        
+
         txBairro.setEditable(true);
         txContatoMae.setEditable(true);
         txContatoPai.setEditable(true);
         txDtNascimento.setEditable(true);
-        txEndereco.setEditable(true);
+        txNomeMae.setEditable(true);
         txFim.setEditable(true);
         txIdade.setEditable(true);
         txInicio.setEditable(true);
         txNomeAluno.setEditable(true);
         txNomeEscola.setEditable(true);
-        txNomeMae.setEditable(true);
         txNomePai.setEditable(true);
+        txEndereco.setEditable(true);
         txNomeProjeto.setEditable(true);
         txNumeroCasa.setEditable(true);
         txRendimentoEscolar.setEditable(true);
@@ -1189,7 +1150,7 @@ public class PainelPrincipal extends javax.swing.JFrame {
     private javax.swing.JComboBox cbSexo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -1236,14 +1197,14 @@ public class PainelPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel panelPrincipal;
     private javax.swing.JPanel panelRendimento;
     private javax.swing.JTextField txBairro;
-    private javax.swing.JFormattedTextField txCPF;
+    private javax.swing.JTextField txCPF;
     private javax.swing.JTextField txConsultar;
-    private javax.swing.JFormattedTextField txContatoMae;
-    private javax.swing.JFormattedTextField txContatoPai;
+    private javax.swing.JTextField txContatoMae;
+    private javax.swing.JTextField txContatoPai;
     private javax.swing.JTextField txDtNascimento;
     private javax.swing.JTextField txEndereco;
     private javax.swing.JTextField txFim;
-    private javax.swing.JFormattedTextField txIdade;
+    private javax.swing.JTextField txIdade;
     private javax.swing.JTextField txInicio;
     private javax.swing.JTextField txNomeAluno;
     private javax.swing.JTextField txNomeEscola;
@@ -1299,14 +1260,14 @@ public class PainelPrincipal extends javax.swing.JFrame {
                 txContatoMae.setText("");
                 txContatoPai.setText("");
                 txDtNascimento.setText("");
-                txEndereco.setText("");
+                txNomeMae.setText("");
                 txFim.setText("");
                 txIdade.setText("");
                 txInicio.setText("");
                 txNomeAluno.setText("");
                 txNomeEscola.setText("");
-                txNomeMae.setText("");
                 txNomePai.setText("");
+                txEndereco.setText("");
                 txNomeProjeto.setText("");
                 txNumeroCasa.setText("");
                 txRendimentoEscolar.setText("");
@@ -1325,25 +1286,29 @@ public class PainelPrincipal extends javax.swing.JFrame {
         con = null;
         aluno.setNomeAluno(txNomeAluno.getText());
         aluno.setNomeEscola(txNomeEscola.getText());
-        aluno.setNomeMae(txNomeMae.getText());
-        aluno.setNomePai(txNomePai.getText());
+        aluno.setNomeMae(txNomePai.getText());
+        aluno.setNomePai(txEndereco.getText());
         aluno.setNomeProjeto(txNomeProjeto.getText());
         aluno.setBairro(txBairro.getText());
         aluno.setDtFim(txFim.getText());
         aluno.setDtInicio(txInicio.getText());
         aluno.setDtNascimento(txDtNascimento.getText());
-        aluno.setEndereco(txEndereco.getText());
-        aluno.setIdade(Integer.parseInt(txIdade.getText()));
+        aluno.setEndereco(txNomeMae.getText());
+        aluno.setIdade(txIdade.getText());
         aluno.setRendimentoEscolar(txRendimentoEscolar.getText());
         aluno.setRg(Integer.parseInt(txRg.getText()));
         aluno.setSemestre(txSemestre.getText());
         aluno.setSexo(cbSexo.getSelectedItem().toString());
-        aluno.setTelMae(Integer.parseInt(txContatoMae.getText()));
-        aluno.setTelPai(Integer.parseInt(txContatoPai.getText()));
+        aluno.setTelMae(txContatoMae.getText());
+        aluno.setTelPai(txContatoPai.getText());
         aluno.setCpf(txCPF.getText());
         aluno.setnCasa(txNumeroCasa.getText());
         aluno.setSerie(txSerie.getText());
-        aluno.setFoto(arquivo.getAbsolutePath().replace("\\", "/").toString());
+        if (arquivo != null) {
+            aluno.setFoto((arquivo.getAbsolutePath().replace("\\", "/").toString()));
+        } else {
+            aluno.setFoto("");
+        }
         if (con == null) {
             try {
                 con = ConexaoDB.getConexao();
@@ -1377,14 +1342,14 @@ public class PainelPrincipal extends javax.swing.JFrame {
                 txContatoMae.setText("");
                 txContatoPai.setText("");
                 txDtNascimento.setText("");
-                txEndereco.setText("");
+                txNomeMae.setText("");
                 txFim.setText("");
                 txIdade.setText("");
                 txInicio.setText("");
                 txNomeAluno.setText("");
                 txNomeEscola.setText("");
-                txNomeMae.setText("");
                 txNomePai.setText("");
+                txEndereco.setText("");
                 txNomeProjeto.setText("");
                 txNumeroCasa.setText("");
                 txRendimentoEscolar.setText("");
@@ -1421,11 +1386,11 @@ public class PainelPrincipal extends javax.swing.JFrame {
                     txDtNascimento.setText(rs.getString("dt_nascimento"));
                     cbSexo.setSelectedItem(rs.getString("sexo"));
                     txIdade.setText(rs.getString("idade"));
-                    txNomePai.setText(rs.getString("nm_pai"));
-                    txNomeMae.setText(rs.getString("nm_mae"));
+                    txEndereco.setText(rs.getString("nm_pai"));
+                    txNomePai.setText(rs.getString("nm_mae"));
                     txContatoMae.setText(rs.getString("contatoMae"));
                     txContatoPai.setText(rs.getString("contatoPai"));
-                    txEndereco.setText(rs.getString("endereco"));
+                    txNomeMae.setText(rs.getString("endereco"));
                     txNumeroCasa.setText(rs.getString("nCasa"));
                     txBairro.setText(rs.getString("bairro"));
                     txNomeEscola.setText(rs.getString("nm_escola"));
@@ -1443,11 +1408,11 @@ public class PainelPrincipal extends javax.swing.JFrame {
                     txNomeAluno.setEditable(false);
                     txDtNascimento.setEditable(false);
                     txIdade.setEditable(false);
+                    txEndereco.setEditable(false);
                     txNomePai.setEditable(false);
-                    txNomeMae.setEditable(false);
                     txContatoMae.setEditable(false);
                     txContatoPai.setEditable(false);
-                    txEndereco.setEditable(false);
+                    txNomeMae.setEditable(false);
                     txNumeroCasa.setEditable(false);
                     txBairro.setEditable(false);
                     txNomeEscola.setEditable(false);
@@ -1472,39 +1437,40 @@ public class PainelPrincipal extends javax.swing.JFrame {
         }
     }
 
+    @SuppressWarnings("empty-statement")
     public void Cadastrar() {
         //VERIFICANDO CAMPOS VÁZIOS 
-        if (txBairro.getText().equals("") || txContatoMae.getText().equals("") || txContatoPai.getText().equals("")
-                || txDtNascimento.getText().equals("") || txEndereco.getText().equals("") || txFim.getText().equals("")
-                || txFim.getText().equals("") || txIdade.getText().equals("") || txNomeAluno.getText().equals("")
-                || txNomeEscola.getText().equals("") || txNomeMae.getText().equals("") || txNomePai.getText().equals("")
-                || txNomeProjeto.getText().equals("") || txNumeroCasa.getText().equals("") || txRendimentoEscolar.getText().equals("")
-                || txRg.getText().equals("") || txSemestre.getText().equals("") || txSerie.getText().equals("") || txCPF.getText().equals("")) {
-            JOptionPane.showMessageDialog(this, "Existem campos a serem preenchidos ! ");
+        if (txBairro.getText().equals("") || txEndereco.getText().equals("")
+                || txNumeroCasa.getText().equals("") || txRg.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Existem campos obrigatórios a serem preenchidos ! ");
         }
         con = null;
         //SETANDO OS CAMPOS DA FICHA DE INSCRIÇÃO
         aluno.setNomeAluno(txNomeAluno.getText());
         aluno.setNomeEscola(txNomeEscola.getText());
-        aluno.setNomeMae(txNomeMae.getText());
-        aluno.setNomePai(txNomePai.getText());
+        aluno.setNomeMae(txNomePai.getText());
+        aluno.setNomePai(txEndereco.getText());
         aluno.setNomeProjeto(txNomeProjeto.getText());
         aluno.setBairro(txBairro.getText());
         aluno.setDtFim(txFim.getText());
         aluno.setDtInicio(txInicio.getText());
         aluno.setDtNascimento(txDtNascimento.getText());
-        aluno.setEndereco(txEndereco.getText());
-        aluno.setIdade(Integer.parseInt(txIdade.getText()));
+        aluno.setEndereco(txNomeMae.getText());
+        aluno.setIdade(txIdade.getText());
         aluno.setRendimentoEscolar(txRendimentoEscolar.getText());
         aluno.setRg(Integer.parseInt(txRg.getText()));
         aluno.setSemestre(txSemestre.getText());
         aluno.setSexo(cbSexo.getSelectedItem().toString());
-        aluno.setTelMae(Integer.parseInt(txContatoMae.getText()));
-        aluno.setTelPai(Integer.parseInt(txContatoPai.getText()));
+        aluno.setTelMae(txContatoMae.getText());
+        aluno.setTelPai(txContatoPai.getText());
         aluno.setnCasa(txNumeroCasa.getText());
         aluno.setSerie(txSerie.getText());
         aluno.setCpf(txCPF.getText());
-        aluno.setFoto(arquivo.getAbsolutePath().replace("\\", "/").toString());
+        if (arquivo != null) {
+            aluno.setFoto((arquivo.getAbsolutePath().replace("\\", "/").toString()));
+        } else {
+            aluno.setFoto("");
+        }
 
         if (con == null) {
             try {
@@ -1547,14 +1513,14 @@ public class PainelPrincipal extends javax.swing.JFrame {
                 txContatoMae.setText("");
                 txContatoPai.setText("");
                 txDtNascimento.setText("");
-                txEndereco.setText("");
+                txNomeMae.setText("");
                 txFim.setText("");
                 txIdade.setText("");
                 txInicio.setText("");
                 txNomeAluno.setText("");
                 txNomeEscola.setText("");
-                txNomeMae.setText("");
                 txNomePai.setText("");
+                txEndereco.setText("");
                 txNomeProjeto.setText("");
                 txNumeroCasa.setText("");
                 txRendimentoEscolar.setText("");
@@ -1628,7 +1594,7 @@ public class PainelPrincipal extends javax.swing.JFrame {
                 con = ConexaoDB.getConexao();
                 stm = con.createStatement();
                 String sql;
-                sql = "UPDATE inscricao SET ht_projetos = '" + aluno.getHtProjeto()+ "';";
+                sql = "UPDATE inscricao SET ht_projetos = '" + aluno.getHtProjeto() + "';";
                 stm.executeUpdate(sql);
                 JOptionPane.showMessageDialog(this, "Histórico de Projetos do Aluno: \n" + lbNomeAlu.getText() + " "
                         + "Atualizado com sucesso!");

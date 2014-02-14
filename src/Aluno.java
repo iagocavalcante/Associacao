@@ -1,8 +1,32 @@
 
 public class Aluno {
 
-    private String nCasa,rendimentoEscolar, htProjeto, cpf, dtInicio, dtFim, bairro, dtNascimento, nomeProjeto, nomeAluno, sexo, nomePai, nomeMae, serie, endereco, nomeEscola, semestre, foto;
-    private int consulta,idade, rg, telPai, telMae;
+    private String telPai, telMae, idade, nCasa, rendimentoEscolar, htProjeto, cpf, dtInicio, dtFim, bairro, dtNascimento, nomeProjeto, nomeAluno, sexo, nomePai, nomeMae, serie, endereco, nomeEscola, semestre, foto;
+    private int consulta, rg;
+
+    public String getTelPai() {
+        return telPai;
+    }
+
+    public void setTelPai(String telPai) {
+        this.telPai = telPai;
+    }
+
+    public String getTelMae() {
+        return telMae;
+    }
+
+    public void setTelMae(String telMae) {
+        this.telMae = telMae;
+    }
+
+    public String getIdade() {
+        return idade;
+    }
+
+    public void setIdade(String idade) {
+        this.idade = idade;
+    }
 
     public String getCpf() {
         return cpf;
@@ -19,8 +43,7 @@ public class Aluno {
     public void setConsulta(int consulta) {
         this.consulta = consulta;
     }
-    
-    
+
     public String getFoto() {
         return foto;
     }
@@ -149,14 +172,6 @@ public class Aluno {
         this.semestre = semestre;
     }
 
-    public int getIdade() {
-        return idade;
-    }
-
-    public void setIdade(int idade) {
-        this.idade = idade;
-    }
-
     public int getRg() {
         return rg;
     }
@@ -173,19 +188,4 @@ public class Aluno {
         this.nCasa = nCasa;
     }
 
-    public int getTelPai() {
-        return telPai;
-    }
-
-    public void setTelPai(int telPai) {
-        this.telPai = telPai;
-    }
-
-    public int getTelMae() {
-        return telMae;
-    }
-
-    public void setTelMae(int telMae) {
-        this.telMae = telMae;
-    }
 }
