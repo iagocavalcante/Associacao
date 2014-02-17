@@ -255,9 +255,9 @@ public class PainelPrincipal extends javax.swing.JFrame {
                     .addComponent(jScroll)
                     .addGroup(panelHistoricoProjetoLayout.createSequentialGroup()
                         .addComponent(lbAlunoProj)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lbNomeAlu, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 174, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(panelHistoricoProjetoLayout.createSequentialGroup()
                 .addGap(182, 182, 182)
@@ -266,7 +266,7 @@ public class PainelPrincipal extends javax.swing.JFrame {
                 .addComponent(btEditarProjeto)
                 .addGap(18, 18, 18)
                 .addComponent(btAtualizarHtProj)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(191, Short.MAX_VALUE))
         );
         panelHistoricoProjetoLayout.setVerticalGroup(
             panelHistoricoProjetoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -550,9 +550,9 @@ public class PainelPrincipal extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lbNomeProjeto)
-                            .addComponent(txNomeAluno, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lbNomeAluno)
                             .addComponent(txNomeProjeto, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lbNomeAluno)
+                            .addComponent(txNomeAluno, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txDtNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -682,7 +682,7 @@ public class PainelPrincipal extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txFim, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txNomeAluno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txNomeProjeto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -691,7 +691,7 @@ public class PainelPrincipal extends javax.swing.JFrame {
                             .addComponent(lbNomeAluno))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txNomeProjeto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txNomeAluno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txRg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5)
                             .addComponent(jLabel8)
@@ -877,11 +877,11 @@ public class PainelPrincipal extends javax.swing.JFrame {
         txFim.setText("");
         txIdade.setText("");
         txInicio.setText("");
-        txNomeAluno.setText("");
+        txNomeProjeto.setText("");
         txNomeEscola.setText("");
         txNomePai.setText("");
         txEndereco.setText("");
-        txNomeProjeto.setText("");
+        txNomeAluno.setText("");
         txNumeroCasa.setText("");
         txRendimentoEscolar.setText("");
         txRg.setText("");
@@ -944,9 +944,6 @@ public class PainelPrincipal extends javax.swing.JFrame {
         if (btConsultar.getText().equals("Consultar")) {
             Consultar();
         }
-        if (btConsultar.getText().equals("Pesquisar")) {
-            Pesquisar();
-        }
         if (btConsultar.getText().equals("Abrir Projeto")) {
             AbrirProjeto();
         } else {
@@ -955,10 +952,10 @@ public class PainelPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btConsultarActionPerformed
 
     private void btEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditarActionPerformed
-        txNomeProjeto.setEditable(true);
+        txNomeAluno.setEditable(true);
         txInicio.setEditable(true);
         txFim.setEditable(true);
-        txNomeAluno.setEditable(true);
+        txNomeProjeto.setEditable(true);
         txDtNascimento.setEditable(true);
         txIdade.setEditable(true);
         txEndereco.setEditable(true);
@@ -996,11 +993,11 @@ public class PainelPrincipal extends javax.swing.JFrame {
         txFim.setText("");
         txIdade.setText("");
         txInicio.setText("");
-        txNomeAluno.setText("");
+        txNomeProjeto.setText("");
         txNomeEscola.setText("");
         txNomePai.setText("");
         txEndereco.setText("");
-        txNomeProjeto.setText("");
+        txNomeAluno.setText("");
         txNumeroCasa.setText("");
         txRendimentoEscolar.setText("");
         txRg.setText("");
@@ -1017,11 +1014,11 @@ public class PainelPrincipal extends javax.swing.JFrame {
         txFim.setEditable(true);
         txIdade.setEditable(true);
         txInicio.setEditable(true);
-        txNomeAluno.setEditable(true);
+        txNomeProjeto.setEditable(true);
         txNomeEscola.setEditable(true);
         txNomePai.setEditable(true);
         txEndereco.setEditable(true);
-        txNomeProjeto.setEditable(true);
+        txNomeAluno.setEditable(true);
         txNumeroCasa.setEditable(true);
         txRendimentoEscolar.setEditable(true);
         txRg.setEditable(true);
@@ -1217,29 +1214,7 @@ public class PainelPrincipal extends javax.swing.JFrame {
     private javax.swing.JTextField txSemestre;
     private javax.swing.JTextField txSerie;
     // End of variables declaration//GEN-END:variables
-    private void Pesquisar() {
-        con = null;
-        aluno.setConsulta(Integer.parseInt(txConsultar.getText()));
-        if (con == null) {
-            try {
-                con = ConexaoDB.getConexao();
-                stm = con.createStatement();
-                String sql;
-                sql = "SELECT nome_aluno, nome_projeto FROM inscricao WHERE idAluno = '" + aluno.getConsulta() + "' OR rg = '" + aluno.getConsulta() + "';";
-                rs = stm.executeQuery(sql);//sadfasdfasdfasdfasdfsafddsf
-                rs.next();
-                System.out.println(rs.getString("nome_aluno"));
-                if (rs.first()) { //deu merda
-                    Abrir.setVisible(false);
-                    AbrirHistoricoProjeto1.setFocusableWindowState(true);
-                } else {
-                    JOptionPane.showMessageDialog(AbrirHistoricoRendimento1, "ID ou RG não encontrados!!");
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-    }
+    
 
     public void Deletar() {
         con = null;
@@ -1264,11 +1239,11 @@ public class PainelPrincipal extends javax.swing.JFrame {
                 txFim.setText("");
                 txIdade.setText("");
                 txInicio.setText("");
-                txNomeAluno.setText("");
+                txNomeProjeto.setText("");
                 txNomeEscola.setText("");
                 txNomePai.setText("");
                 txEndereco.setText("");
-                txNomeProjeto.setText("");
+                txNomeAluno.setText("");
                 txNumeroCasa.setText("");
                 txRendimentoEscolar.setText("");
                 txRg.setText("");
@@ -1286,14 +1261,14 @@ public class PainelPrincipal extends javax.swing.JFrame {
         con = null;
         aluno.setNomeAluno(txNomeAluno.getText());
         aluno.setNomeEscola(txNomeEscola.getText());
-        aluno.setNomeMae(txNomePai.getText());
-        aluno.setNomePai(txEndereco.getText());
+        aluno.setNomeMae(txNomeMae.getText());
+        aluno.setNomePai(txNomePai.getText());
         aluno.setNomeProjeto(txNomeProjeto.getText());
         aluno.setBairro(txBairro.getText());
         aluno.setDtFim(txFim.getText());
         aluno.setDtInicio(txInicio.getText());
         aluno.setDtNascimento(txDtNascimento.getText());
-        aluno.setEndereco(txNomeMae.getText());
+        aluno.setEndereco(txEndereco.getText());
         aluno.setIdade(txIdade.getText());
         aluno.setRendimentoEscolar(txRendimentoEscolar.getText());
         aluno.setRg(Integer.parseInt(txRg.getText()));
@@ -1346,11 +1321,11 @@ public class PainelPrincipal extends javax.swing.JFrame {
                 txFim.setText("");
                 txIdade.setText("");
                 txInicio.setText("");
-                txNomeAluno.setText("");
+                txNomeProjeto.setText("");
                 txNomeEscola.setText("");
                 txNomePai.setText("");
                 txEndereco.setText("");
-                txNomeProjeto.setText("");
+                txNomeAluno.setText("");
                 txNumeroCasa.setText("");
                 txRendimentoEscolar.setText("");
                 txRg.setText("");
@@ -1367,7 +1342,7 @@ public class PainelPrincipal extends javax.swing.JFrame {
         }
     }
 
-    public void Consultar(){
+    public void Consultar() {
         con = null;
         aluno.setConsulta(Integer.parseInt(txConsultar.getText()));
         if (con == null) {
@@ -1399,10 +1374,13 @@ public class PainelPrincipal extends javax.swing.JFrame {
                     txRg.setText(rs.getString("rg"));
                     txSerie.setText(rs.getString("serie"));
                     txCPF.setText(rs.getString("cpf"));
-                    //lbFoto.setIcon(new ImageIcon(rs.getString("foto")));
-                    BufferedImage fotoBuff = ImageIO.read(new File(rs.getString("foto")));
-                    Image foto = fotoBuff.getScaledInstance(150, 150, Image.SCALE_SMOOTH);
-                    lbFoto.setIcon(new ImageIcon(foto));
+                    if (rs.getString("foto").equals("")) {
+                        lbFoto.setIcon(new ImageIcon(""));
+                    } else {
+                        BufferedImage fotoBuff = ImageIO.read(new File(rs.getString("foto")));
+                        Image foto = fotoBuff.getScaledInstance(150, 150, Image.SCALE_SMOOTH);
+                        lbFoto.setIcon(new ImageIcon(foto));
+                    }
                     Abrir.setVisible(false);
 
                     txNomeProjeto.setEditable(false);
@@ -1436,7 +1414,7 @@ public class PainelPrincipal extends javax.swing.JFrame {
                 }
             } catch (SQLException sqlex) {
                 sqlex.printStackTrace();
-            }catch (IOException e){
+            } catch (IOException e) {
                 e.printStackTrace();
             }
         }
@@ -1451,11 +1429,11 @@ public class PainelPrincipal extends javax.swing.JFrame {
         }
         con = null;
         //SETANDO OS CAMPOS DA FICHA DE INSCRIÇÃO
-        aluno.setNomeAluno(txNomeAluno.getText());
+        aluno.setNomeProjeto(txNomeProjeto.getText());
         aluno.setNomeEscola(txNomeEscola.getText());
         aluno.setNomeMae(txNomePai.getText());
         aluno.setNomePai(txEndereco.getText());
-        aluno.setNomeProjeto(txNomeProjeto.getText());
+        aluno.setNomeAluno(txNomeAluno.getText());
         aluno.setBairro(txBairro.getText());
         aluno.setDtFim(txFim.getText());
         aluno.setDtInicio(txInicio.getText());
@@ -1522,11 +1500,11 @@ public class PainelPrincipal extends javax.swing.JFrame {
                 txFim.setText("");
                 txIdade.setText("");
                 txInicio.setText("");
-                txNomeAluno.setText("");
+                txNomeProjeto.setText("");
                 txNomeEscola.setText("");
                 txNomePai.setText("");
                 txEndereco.setText("");
-                txNomeProjeto.setText("");
+                txNomeAluno.setText("");
                 txNumeroCasa.setText("");
                 txRendimentoEscolar.setText("");
                 txRg.setText("");
@@ -1584,7 +1562,9 @@ public class PainelPrincipal extends javax.swing.JFrame {
                 stm.executeUpdate(sql);
                 JOptionPane.showMessageDialog(this, "Rendimento Escolar do Aluno: \n" + lbNome.getText() + " "
                         + "Atualizado com sucesso!");
-
+                atRendimento.setEditable(false);
+                atRendimento.setText("");
+                lbNome.setText("");
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -1603,7 +1583,9 @@ public class PainelPrincipal extends javax.swing.JFrame {
                 stm.executeUpdate(sql);
                 JOptionPane.showMessageDialog(this, "Histórico de Projetos do Aluno: \n" + lbNomeAlu.getText() + " "
                         + "Atualizado com sucesso!");
-
+                atHtProjeto.setEditable(false);
+                atHtProjeto.setText("");
+                lbNomeAlu.setText("");
             } catch (SQLException e) {
                 e.printStackTrace();
             }

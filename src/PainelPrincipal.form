@@ -130,9 +130,9 @@
                           <Component id="jScroll" alignment="0" max="32767" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="lbAlunoProj" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
                               <Component id="lbNomeAlu" min="-2" pref="350" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="174" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -144,7 +144,7 @@
                       <Component id="btEditarProjeto" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="btAtualizarHtProj" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="191" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -533,9 +533,9 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="lbNomeProjeto" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txNomeAluno" min="-2" pref="300" max="-2" attributes="0"/>
+                                  <Component id="txNomeProjeto" min="-2" pref="300" max="-2" attributes="0"/>
                                   <Component id="lbNomeAluno" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txNomeProjeto" alignment="0" min="-2" pref="300" max="-2" attributes="0"/>
+                                  <Component id="txNomeAluno" alignment="0" min="-2" pref="300" max="-2" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="txDtNascimento" alignment="0" min="-2" pref="80" max="-2" attributes="0"/>
@@ -709,7 +709,7 @@
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="txInicio" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="txFim" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txNomeAluno" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txNomeProjeto" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -721,7 +721,7 @@
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="txNomeProjeto" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txNomeAluno" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="txRg" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
