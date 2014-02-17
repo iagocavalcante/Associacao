@@ -1367,7 +1367,7 @@ public class PainelPrincipal extends javax.swing.JFrame {
         }
     }
 
-    public void Consultar() {
+    public void Consultar(){
         con = null;
         aluno.setConsulta(Integer.parseInt(txConsultar.getText()));
         if (con == null) {
@@ -1399,7 +1399,10 @@ public class PainelPrincipal extends javax.swing.JFrame {
                     txRg.setText(rs.getString("rg"));
                     txSerie.setText(rs.getString("serie"));
                     txCPF.setText(rs.getString("cpf"));
-                    lbFoto.setIcon(new ImageIcon(rs.getString("foto")));
+                    //lbFoto.setIcon(new ImageIcon(rs.getString("foto")));
+                    BufferedImage fotoBuff = ImageIO.read(new File(rs.getString("foto")));
+                    Image foto = fotoBuff.getScaledInstance(150, 150, Image.SCALE_SMOOTH);
+                    lbFoto.setIcon(new ImageIcon(foto));
                     Abrir.setVisible(false);
 
                     txNomeProjeto.setEditable(false);
@@ -1433,6 +1436,8 @@ public class PainelPrincipal extends javax.swing.JFrame {
                 }
             } catch (SQLException sqlex) {
                 sqlex.printStackTrace();
+            }catch (IOException e){
+                e.printStackTrace();
             }
         }
     }
